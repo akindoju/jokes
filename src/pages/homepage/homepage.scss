@@ -1,0 +1,54 @@
+.homepageContainer {
+  background-color: rgb(8, 24, 48);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.homepage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.2s;
+
+    svg {
+      fill: rgb(245, 245, 245);
+      width: 10rem;
+      height: 10rem;
+      transition: all 0.2s;
+    }
+
+    p {
+      color: white;
+      font-size: 2rem;
+      font-family: "Carter One", cursive;
+      transition: all 0.2s;
+    }
+
+    &:not(:last-child) {
+      margin-right: 8rem;
+    }
+
+    &:not(:first-child) {
+      margin-left: 8rem;
+    }
+
+    &:hover,
+    &:active {
+      & svg {
+        transform: translateY(-0.5rem) scale(1.02);
+      }
+
+      & p {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
