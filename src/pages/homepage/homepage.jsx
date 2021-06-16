@@ -7,7 +7,7 @@ const Homepage = () => {
     <div className="homepageContainer">
       <Header />
       <div className="homepage">
-        <Link className="homepage__link">
+        <Link className="homepage__link Link" to="/notes">
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@ const Homepage = () => {
           <p>View Notes</p>
         </Link>
 
-        <Link className="homepage__link">
+        <Link className="homepage__link Link">
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
