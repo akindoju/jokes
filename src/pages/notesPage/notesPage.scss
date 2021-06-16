@@ -1,0 +1,24 @@
+.notesPageContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(8, 24, 48);
+  min-height: 100vh;
+}
+
+.notesPage {
+  height: 100%;
+
+  &__title {
+    color: white;
+    text-align: center;
+    font-size: 4rem;
+    font-family: "Carter One", cursive;
+    margin: 2rem 0;
+  }
+
+  &__note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,0 +1,40 @@
+.note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 3rem 3rem 3rem;
+  background-color: rgb(26, 71, 139);
+  padding: 2rem;
+  color: white;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 80%;
+
+  &__right {
+    display: flex;
+    align-items: center;
+    width: 80%;
+
+    svg {
+      fill: white;
+      margin-right: 1.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-family: "Carter One", cursive;
+  }
+
+  &__date {
+    font-size: 1.2rem;
+    font-family: "Antic", sans-serif;
+    color: rgb(197, 194, 194);
+  }
+
+  &:hover,
+  &:active {
+    transform: translateY(-0.5rem);
+  }
+}
