@@ -1,0 +1,18 @@
+.takeNotesPageContainer {
+  min-height: 100vh;
+  background-color: rgb(88, 120, 168);
+}
+
+.takeNotesPage {
+  display: flex;
+
+  &__sideBar {
+    background-color: rgb(8, 24, 48);
+    height: calc(100vh - 8rem);
+    flex: 0 0 30%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Homepage from "./pages/homepage/homepage";
 import NotesPage from "./pages/notesPage/notesPage";
 import "./App.css";
-import AddNotePage from "./pages/addNotePage/addNotePage";
+import TakeNotePage from "./pages/takeNotePage/takeNotePage";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/notes" component={NotesPage} />
-        <Route path="/add-note" component={AddNotePage} />
+        <Route path="/take-note" component={TakeNotePage} />
       </Switch>
     </Router>
   );
