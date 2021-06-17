@@ -1,18 +1,88 @@
 .takeNotesPageContainer {
   min-height: 100vh;
-  background-color: rgb(88, 120, 168);
+  background-color: rgb(3, 25, 59);
 }
 
 .takeNotesPage {
   display: flex;
 
   &__sideBar {
-    background-color: rgb(8, 24, 48);
+    background-color: rgb(1, 14, 36);
     height: calc(100vh - 8rem);
     flex: 0 0 30%;
     padding: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+
+    &--title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      align-self: flex-start;
+      margin: 2rem 0 1rem 0;
+      width: 100%;
+
+      label {
+        color: white;
+        font-family: "Carter One", cursive;
+        font-size: 1.7rem;
+        font-style: italic;
+        font-weight: lighter;
+        margin-right: 1.5rem;
+        cursor: pointer;
+      }
+
+      input {
+        width: 100%;
+        background: transparent;
+        border: 0;
+        color: white;
+        font-family: "Carter One", cursive;
+        font-size: 2rem;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    &--date {
+      color: white;
+      align-self: start;
+      margin-bottom: 1rem;
+      font-family: "Carter One", cursive;
+      font-size: 1.7rem;
+      font-style: italic;
+
+      span {
+        margin-left: 1rem;
+        font-style: normal;
+      }
+    }
+
+    textarea {
+      height: 80%;
+      width: 65vw;
+      border-radius: 0.5rem;
+      resize: none;
+      font-size: 1.5rem;
+      padding: 1.5rem;
+      //   font-family: "Antic", sans-serif;
+      font-style: italic;
+      font-weight: 600;
+
+      &:focus {
+        box-shadow: 0 0 15px rgb(26, 71, 139);
+        outline: none;
+      }
+    }
   }
 }

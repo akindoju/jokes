@@ -16,4 +16,9 @@
   &:focus {
     outline: none;
   }
+
+  &::placeholder {
+    font-family: "Carter One", cursive;
+    opacity: 50%;
+  }
 }

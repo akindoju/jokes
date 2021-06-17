@@ -4,7 +4,7 @@
   align-items: center;
   margin: 0 3rem 1.5rem 3rem;
   background-color: rgb(26, 71, 139);
-  padding: 1rem;
+  padding: 1rem 0.8rem 1rem 1rem;
   color: white;
   border-radius: 0.2rem;
   cursor: pointer;
@@ -14,7 +14,7 @@
   &__left {
     display: flex;
     align-items: center;
-    width: 80%;
+    width: 74%;
 
     svg {
       fill: white;

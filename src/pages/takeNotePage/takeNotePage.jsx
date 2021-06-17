@@ -15,6 +15,16 @@ const TakeNotePage = () => {
           <SideBarNote />
           <SideBarNote />
         </div>
+        <div className="takeNotesPage__main">
+          <div className="takeNotesPage__main--title">
+            <label htmlFor="title">Title:</label>
+            <input type="text" id="title" autoFocus />
+          </div>
+          <p className="takeNotesPage__main--date">
+            Date: <span>{new Date().toLocaleString()}</span>
+          </p>
+          <textarea />
+        </div>
       </div>
     </div>
   );
