@@ -30,15 +30,19 @@ const NotesPage = () => {
         </svg>
         <h1 className="notesPage__title">Notes</h1>
         <div className="notesPage__note">
-          {NoteContent.map((note) => {
-            return (
-              <Note
-                title={note.title}
-                date={note.date}
-                details={note.details}
-              />
-            );
-          })}
+          {NoteContent.length > 0 ? (
+            NoteContent.map((note) => {
+              return (
+                <Note
+                  title={note.title}
+                  date={note.date}
+                  details={note.details}
+                />
+              );
+            })
+          ) : (
+            <p className="noNotes">You currently have no notes!</p>
+          )}
         </div>
       </div>
     </div>

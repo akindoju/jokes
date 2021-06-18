@@ -2,13 +2,13 @@ import { useRef, useState } from "react";
 import Header from "../../components/Header/Header";
 import SideBar from "../../components/SideBar/SideBar";
 import { NoteContent } from "../../NotesContent";
-
 import "./takeNotePage.scss";
 
 const TakeNotePage = () => {
   const [noteTitle, setNoteTitle] = useState("");
   const noteDate = useRef(new Date().toDateString());
   const [noteDetails, setNoteDetails] = useState("");
+  const [isReloadingPage, setIsReloadingPage] = useState(false);
 
   const saveNote = () => {
     NoteContent.push({
@@ -22,11 +22,12 @@ const TakeNotePage = () => {
     <div className="takeNotesPageContainer">
       <Header />
       <div className="takeNotesPage">
-        <SideBar />
+        <SideBar isReloadingPage={isReloadingPage} />
         <div className="takeNotesPage__main">
           <div className="takeNotesPage__main--title">
             <label htmlFor="title">Title:</label>
             <input
+              autoComplete="off"
               type="text"
               id="title"
               autoFocus
@@ -43,7 +44,10 @@ const TakeNotePage = () => {
             <button
               onClick={() => {
                 saveNote();
-                console.log(NoteContent);
+                setIsReloadingPage(true);
+                setTimeout(() => {
+                  setIsReloadingPage(false);
+                }, 100);
               }}
             >
               Save
