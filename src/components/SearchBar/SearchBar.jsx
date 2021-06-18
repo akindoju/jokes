@@ -1,10 +1,6 @@
-import { useState } from "react";
-import { NoteContent } from "../../NotesContent";
 import "./SearchBar.scss";
 
-const SearchBar = () => {
-  const [searchValue, setSearchValue] = useState("");
-
+const SearchBar = ({ searchValue, setSearchValue }) => {
   return (
     <input
       type="text"
