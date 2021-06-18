@@ -14,3 +14,19 @@ html {
 .Link {
   text-decoration: none;
 }
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(26, 76, 151);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(27, 64, 121);
+}
