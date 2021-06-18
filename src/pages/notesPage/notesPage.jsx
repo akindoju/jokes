@@ -1,11 +1,14 @@
+import { useState } from "react";
 import Note from "../../components/Note/Note";
 import Header from "../../components/Header/Header";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import { NoteContent } from "../../NotesContent";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./notesPage.scss";
 
 const NotesPage = () => {
+  const [searchValue, setSearchValue] = useState("");
   const history = useHistory();
 
   console.log(NoteContent);
@@ -31,16 +34,23 @@ const NotesPage = () => {
         </svg>
         <h1 className="notesPage__title">Notes</h1>
         <div className="notesPage__note">
+          <SearchBar
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+          />
           {NoteContent.length > 0 ? (
-            NoteContent.map((note) => {
-              return (
-                <Note
-                  title={note.title}
-                  date={note.date}
-                  details={note.details}
-                />
-              );
-            })
+            searchValue === "" ? (
+              NoteContent.map((note) => {
+                return <Note title={note.title} date={note.date} />;
+              })
+            ) : (
+              //filter notes acc. to search value
+              NoteContent.filter((note) =>
+                note.title.includes(searchValue)
+              ).map((note) => {
+                return <Note title={note.title} date={note.date} />;
+              })
+            )
           ) : (
             <div>
               <p className="noNotes">You currently have no notes!</p>
