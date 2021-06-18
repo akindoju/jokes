@@ -44,7 +44,7 @@ const SideBar = ({ IsReloadingPage }) => {
         ) : (
           //filter notes acc. to search value
           NoteContent.filter((note) =>
-            note.title.includes(searchValue.toLowerCase())
+            note.title.toLowerCase().includes(searchValue.toLowerCase())
           ).map((note) => {
             return <SideBarNote title={note.title} date={note.date} />;
           })

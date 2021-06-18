@@ -46,7 +46,7 @@ const NotesPage = () => {
             ) : (
               //filter notes acc. to search value
               NoteContent.filter((note) =>
-                note.title.includes(searchValue.toLowerCase())
+                note.title.toLowerCase().includes(searchValue.toLowerCase())
               ).map((note) => {
                 return <Note title={note.title} date={note.date} />;
               })
