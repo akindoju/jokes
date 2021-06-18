@@ -1,15 +1,38 @@
-.searchBar {
-  width: 90%;
-  padding: 0.5rem;
+.notesPageSearchBar {
+  width: 60%;
+  padding: 1rem;
   margin-bottom: 2rem;
-  transition: all 0.3s;
+  transition: all 0.4s;
   border: 0;
   border-radius: 2px;
 
   &:hover,
   &:focus {
-    width: 95%;
-    transform: scale(1.05);
+    transform: scale(1.01);
+    box-shadow: 0 0 8px rgb(26, 71, 139);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-family: "Carter One", cursive;
+    opacity: 50%;
+  }
+}
+
+.sideBarSearchBar {
+  width: 90%;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  transition: all 0.4s;
+  border: 0;
+  border-radius: 2px;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.02);
     box-shadow: 0 0 8px rgb(26, 71, 139);
   }
 

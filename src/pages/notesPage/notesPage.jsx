@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Note from "../../components/Note/Note";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -9,9 +9,8 @@ import "./notesPage.scss";
 
 const NotesPage = () => {
   const [searchValue, setSearchValue] = useState("");
+  const isOnNotesPage = useRef(true);
   const history = useHistory();
-
-  console.log(NoteContent);
 
   return (
     <div className="notesPageContainer">
@@ -37,6 +36,7 @@ const NotesPage = () => {
           <SearchBar
             searchValue={searchValue}
             setSearchValue={setSearchValue}
+            isOnNotesPage={isOnNotesPage.current}
           />
           {NoteContent.length > 0 ? (
             searchValue === "" ? (
@@ -46,7 +46,7 @@ const NotesPage = () => {
             ) : (
               //filter notes acc. to search value
               NoteContent.filter((note) =>
-                note.title.includes(searchValue)
+                note.title.includes(searchValue.toLowerCase())
               ).map((note) => {
                 return <Note title={note.title} date={note.date} />;
               })
