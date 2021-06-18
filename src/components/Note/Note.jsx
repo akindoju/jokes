@@ -1,6 +1,6 @@
 import "./Note.scss";
 
-const Note = () => {
+const Note = ({ title, date }) => {
   return (
     <div className="note">
       <div className="note__right">
@@ -14,11 +14,9 @@ const Note = () => {
           <title>sort</title>
           <path d="M3 12.984v-1.969h12v1.969h-12zM3 6h18v2.016h-18v-2.016zM3 18v-2.016h6v2.016h-6z"></path>
         </svg>
-        <h2 className="note__title">
-          Note that the development build is not optimized.
-        </h2>
+        <h2 className="note__title">{title}</h2>
       </div>
-      <h4 className="note__date">Wed Jun, 2021</h4>
+      <h4 className="note__date">{date}</h4>
     </div>
   );
 };

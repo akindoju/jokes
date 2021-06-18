@@ -66,10 +66,35 @@
       }
     }
 
+    &--sub {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      width: 100%;
+
+      button {
+        background-color: rgb(26, 71, 139);
+        padding: 0.5rem 1rem;
+        border: 0;
+        border-radius: 4px;
+        cursor: pointer;
+        color: white;
+        font-family: "Carter One", cursive;
+        font-size: 1.7rem;
+
+        &:hover {
+          background-color: rgb(26, 76, 151);
+        }
+
+        &:active {
+          transform: scale(0.98);
+        }
+      }
+    }
+
     &--date {
       color: white;
-      align-self: start;
-      margin-bottom: 1rem;
       font-family: "Carter One", cursive;
       font-size: 1.7rem;
       font-style: italic;

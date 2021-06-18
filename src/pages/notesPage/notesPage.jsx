@@ -1,11 +1,13 @@
 import Note from "../../components/Note/Note";
 import Header from "../../components/Header/Header";
-
+import { NoteContent } from "../../NotesContent";
 import "./notesPage.scss";
 import { useHistory } from "react-router-dom";
 
 const NotesPage = () => {
   const history = useHistory();
+
+  console.log(NoteContent);
 
   return (
     <div className="notesPageContainer">
@@ -28,16 +30,15 @@ const NotesPage = () => {
         </svg>
         <h1 className="notesPage__title">Notes</h1>
         <div className="notesPage__note">
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
-          <Note />
+          {NoteContent.map((note) => {
+            return (
+              <Note
+                title={note.title}
+                date={note.date}
+                details={note.details}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
