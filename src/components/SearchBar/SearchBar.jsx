@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NoteContent } from "../../NotesContent";
 import "./SearchBar.scss";
 
 const SearchBar = () => {
@@ -9,8 +10,10 @@ const SearchBar = () => {
       type="text"
       value={searchValue}
       className="searchBar"
-      placeholder="Search Note"
-      onChange={({ target }) => setSearchValue(target.value)}
+      placeholder="Search Note by title"
+      onChange={({ target }) => {
+        setSearchValue(target.value);
+      }}
     />
   );
 };
