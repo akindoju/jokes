@@ -9,6 +9,9 @@ import "./notesPage.scss";
 
 const NotesPage = () => {
   const [searchValue, setSearchValue] = useState("");
+  // const [gottenTitle, setGottenTitle] = useState("");
+  // const [gottenDate, setGottenDate] = useState("");
+  // const [gottenDetails, setGottenDetails] = useState("");
   const isOnNotesPage = useRef(true);
   const history = useHistory();
 

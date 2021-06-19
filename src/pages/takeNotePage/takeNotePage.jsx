@@ -6,9 +6,13 @@ import "./takeNotePage.scss";
 
 const TakeNotePage = () => {
   const [noteTitle, setNoteTitle] = useState("");
-  const noteDate = useRef(new Date().toDateString());
   const [noteDetails, setNoteDetails] = useState("");
+  const [gottenTitle, setGottenTitle] = useState("");
+  const [gottenDate, setGottenDate] = useState("");
+  const [gottenDetails, setGottenDetails] = useState("");
   const [isReloadingPage, setIsReloadingPage] = useState(false);
+  const [isSideBarNoteClicked, setIsSideBarNoteClicked] = useState(false);
+  const noteDate = useRef(new Date().toDateString());
 
   const saveNote = () => {
     NoteContent.push({
@@ -22,7 +26,14 @@ const TakeNotePage = () => {
     <div className="takeNotesPageContainer">
       <Header />
       <div className="takeNotesPage">
-        <SideBar isReloadingPage={isReloadingPage} />
+        <SideBar
+          isReloadingPage={isReloadingPage}
+          setIsSideBarNoteClicked={setIsSideBarNoteClicked}
+          setGottenDate={setGottenDate}
+          setGottenDetails={setGottenDetails}
+          setGottenTitle={setGottenTitle}
+        />
+
         <div className="takeNotesPage__main">
           <div className="takeNotesPage__main--title">
             <label htmlFor="title">Title:</label>
@@ -31,15 +42,20 @@ const TakeNotePage = () => {
               type="text"
               id="title"
               autoFocus
-              value={noteTitle}
+              value={isSideBarNoteClicked ? gottenTitle : noteTitle}
               onChange={({ target }) => {
-                setNoteTitle(target.value);
+                isSideBarNoteClicked
+                  ? setGottenTitle(target.value)
+                  : setNoteTitle(target.value);
               }}
             />
           </div>
           <div className="takeNotesPage__main--sub">
             <p className="takeNotesPage__main--date">
-              Date: <span>{noteDate.current}</span>
+              Date:{" "}
+              <span>
+                {isSideBarNoteClicked ? gottenDate : noteDate.current}
+              </span>
             </p>
             <button
               onClick={() => {
@@ -54,9 +70,11 @@ const TakeNotePage = () => {
             </button>
           </div>
           <textarea
-            value={noteDetails}
+            value={isSideBarNoteClicked ? gottenDetails : noteDetails}
             onChange={({ target }) => {
-              setNoteDetails(target.value);
+              isSideBarNoteClicked
+                ? setNoteDetails(gottenDetails)
+                : setNoteDetails(target.value);
             }}
           />
         </div>

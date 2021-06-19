@@ -5,7 +5,13 @@ import { NoteContent } from "../../NotesContent";
 import { useHistory } from "react-router";
 import "./SideBar.scss";
 
-const SideBar = ({ IsReloadingPage }) => {
+const SideBar = ({
+  IsReloadingPage,
+  setIsSideBarNoteClicked,
+  setGottenDetails,
+  setGottenDate,
+  setGottenTitle,
+}) => {
   const [searchValue, setSearchValue] = useState("");
   const isOnSideBar = useRef(true);
   const history = useHistory();
@@ -39,14 +45,40 @@ const SideBar = ({ IsReloadingPage }) => {
       {NoteContent.length > 0 ? (
         searchValue === "" ? (
           NoteContent.map((note) => {
-            return <SideBarNote title={note.title} date={note.date} />;
+            return (
+              <div
+                className="sideBar__sideBarNote"
+                onClick={() => {
+                  console.log("clicked");
+                  setIsSideBarNoteClicked(true);
+                  setGottenTitle(note.title);
+                  setGottenDate(note.date);
+                  setGottenDetails(note.details);
+                }}
+              >
+                <SideBarNote title={note.title} date={note.date} />
+              </div>
+            );
           })
         ) : (
           //filter notes acc. to search value
           NoteContent.filter((note) =>
             note.title.toLowerCase().includes(searchValue.toLowerCase())
           ).map((note) => {
-            return <SideBarNote title={note.title} date={note.date} />;
+            return (
+              <div
+                className="sideBar__sideBarNote"
+                onClick={() => {
+                  console.log("clicked");
+                  setIsSideBarNoteClicked(true);
+                  setGottenTitle(note.title);
+                  setGottenDate(note.date);
+                  setGottenDetails(note.details);
+                }}
+              >
+                <SideBarNote title={note.title} date={note.date} />
+              </div>
+            );
           })
         )
       ) : (
