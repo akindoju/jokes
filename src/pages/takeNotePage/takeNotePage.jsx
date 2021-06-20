@@ -53,8 +53,8 @@ const TakeNotePage = ({
           setGottenTitle={setGottenTitle}
         />
 
-        <div className="takeNotesPage__main">
-          <div className="takeNotesPage__main--title">
+        <div className="takeNotesPage__right">
+          <div className="takeNotesPage__right__title">
             <label htmlFor="title">Title:</label>
             <input
               autoComplete="off"
@@ -77,8 +77,8 @@ const TakeNotePage = ({
               }}
             />
           </div>
-          <div className="takeNotesPage__main--sub">
-            <p className="takeNotesPage__main--date">
+          <div className="takeNotesPage__right__sub">
+            <p className="takeNotesPage__right__sub--date">
               Date:{" "}
               <span>
                 {isSideBarNoteClicked
@@ -88,17 +88,24 @@ const TakeNotePage = ({
                   : noteDate.current}
               </span>
             </p>
-            <button
-              onClick={() => {
-                saveNote();
-                setIsReloadingPage(true);
-                setTimeout(() => {
-                  setIsReloadingPage(false);
-                }, 100);
-              }}
-            >
-              Save
-            </button>
+            <div className="takeNotesPage__right__sub--buttons">
+              <button className="takeNotesPage__right__sub--buttons--1">
+                Delete
+              </button>
+
+              <button
+                className="takeNotesPage__right__sub--buttons--2"
+                onClick={() => {
+                  saveNote();
+                  setIsReloadingPage(true);
+                  setTimeout(() => {
+                    setIsReloadingPage(false);
+                  }, 100);
+                }}
+              >
+                Save
+              </button>
+            </div>
           </div>
           <textarea
             value={

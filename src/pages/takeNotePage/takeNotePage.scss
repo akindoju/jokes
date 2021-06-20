@@ -6,13 +6,13 @@
 .takeNotesPage {
   display: flex;
 
-  &__main {
+  &__right {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
 
-    &--title {
+    &__title {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -44,43 +44,69 @@
       }
     }
 
-    &--sub {
+    &__sub {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1rem;
       width: 100%;
 
-      button {
-        background-color: rgb(26, 71, 139);
-        padding: 0.5rem 1rem;
-        border: 0;
-        border-radius: 4px;
-        cursor: pointer;
+      &--date {
         color: white;
         font-family: "Carter One", cursive;
         font-size: 1.7rem;
+        font-style: italic;
 
-        &:hover {
-          background-color: rgb(26, 76, 151);
-        }
-
-        &:active {
-          transform: scale(0.98);
-          outline: none;
+        span {
+          margin-left: 1rem;
+          font-style: normal;
         }
       }
-    }
 
-    &--date {
-      color: white;
-      font-family: "Carter One", cursive;
-      font-size: 1.7rem;
-      font-style: italic;
+      &--buttons {
+        display: flex;
+        justify-content: space-between;
+        flex: 0 0 16%;
 
-      span {
-        margin-left: 1rem;
-        font-style: normal;
+        &--1 {
+          background-color: rgb(219, 11, 11);
+          padding: 0.5rem 1rem;
+          border: 0;
+          border-radius: 4px;
+          cursor: pointer;
+          color: white;
+          font-family: "Carter One", cursive;
+          font-size: 1.7rem;
+
+          &:hover {
+            background-color: rgb(197, 37, 37);
+          }
+
+          &:active {
+            transform: scale(0.98);
+            outline: none;
+          }
+        }
+
+        &--2 {
+          background-color: rgb(26, 71, 139);
+          padding: 0.5rem 1rem;
+          border: 0;
+          border-radius: 4px;
+          cursor: pointer;
+          color: white;
+          font-family: "Carter One", cursive;
+          font-size: 1.7rem;
+
+          &:hover {
+            background-color: rgb(26, 76, 151);
+          }
+
+          &:active {
+            transform: scale(0.98);
+            outline: none;
+          }
+        }
       }
     }
 
