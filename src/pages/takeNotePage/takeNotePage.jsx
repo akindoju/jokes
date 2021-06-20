@@ -15,11 +15,17 @@ const TakeNotePage = () => {
   const noteDate = useRef(new Date().toDateString());
 
   const saveNote = () => {
-    NoteContent.push({
-      title: noteTitle,
-      date: noteDate.current,
-      details: noteDetails,
-    });
+    isSideBarNoteClicked
+      ? NoteContent.push({
+          title: gottenTitle,
+          date: gottenDate,
+          details: gottenDetails,
+        })
+      : NoteContent.push({
+          title: noteTitle,
+          date: noteDate.current,
+          details: noteDetails,
+        });
   };
 
   return (
@@ -73,7 +79,7 @@ const TakeNotePage = () => {
             value={isSideBarNoteClicked ? gottenDetails : noteDetails}
             onChange={({ target }) => {
               isSideBarNoteClicked
-                ? setNoteDetails(gottenDetails)
+                ? setGottenDetails(target.value)
                 : setNoteDetails(target.value);
             }}
           />
