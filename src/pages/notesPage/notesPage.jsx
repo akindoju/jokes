@@ -48,6 +48,7 @@ const NotesPage = ({
               NoteContent.map((note) => {
                 return (
                   <div
+                    className="notesPageNoteContainer"
                     onClick={() => {
                       setNotesPageGottenDate(note.date);
                       setNotesPageGottenDetails(note.details);

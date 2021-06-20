@@ -47,7 +47,7 @@ const SideBar = ({
           NoteContent.map((note) => {
             return (
               <div
-                className="sideBar__sideBarNote"
+                className="sideBarNoteContainer"
                 onClick={() => {
                   console.log("clicked");
                   setIsSideBarNoteClicked(true);
@@ -71,7 +71,7 @@ const SideBar = ({
           ).map((note) => {
             return (
               <div
-                className="sideBar__sideBarNote"
+                className="sideBarNoteContainer"
                 onClick={() => {
                   console.log("clicked");
                   setIsSideBarNoteClicked(true);
