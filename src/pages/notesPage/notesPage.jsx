@@ -1,14 +1,18 @@
 import { useRef, useState } from "react";
-// import Note from "../../components/Note/Note";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import SideBarNote from "../../components/Note/Note";
+import Note from "../../components/Note/Note";
 import { NoteContent } from "../../NotesContent";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./notesPage.scss";
 
-const NotesPage = () => {
+const NotesPage = ({
+  setNotesPageGottenTitle,
+  setNotesPageGottenDate,
+  setNotesPageGottenDetails,
+  setIsFromNotesPage,
+}) => {
   const [searchValue, setSearchValue] = useState("");
   const isOnNotesPage = useRef(true);
   const history = useHistory();
@@ -43,11 +47,21 @@ const NotesPage = () => {
             searchValue === "" ? (
               NoteContent.map((note) => {
                 return (
-                  <SideBarNote
-                    title={note.title}
-                    date={note.date}
-                    isOnNotesPage={isOnNotesPage.current}
-                  />
+                  <div
+                    onClick={() => {
+                      setNotesPageGottenDate(note.date);
+                      setNotesPageGottenDetails(note.details);
+                      setNotesPageGottenTitle(note.title);
+                      setIsFromNotesPage(true);
+                      history.push("/take-note");
+                    }}
+                  >
+                    <Note
+                      title={note.title}
+                      date={note.date}
+                      isOnNotesPage={isOnNotesPage.current}
+                    />
+                  </div>
                 );
               })
             ) : (
@@ -56,11 +70,20 @@ const NotesPage = () => {
                 note.title.toLowerCase().includes(searchValue.toLowerCase())
               ).map((note) => {
                 return (
-                  <SideBarNote
-                    title={note.title}
-                    date={note.date}
-                    isOnNotesPage={isOnNotesPage.current}
-                  />
+                  <div
+                    onClick={() => {
+                      setNotesPageGottenDate(note.date);
+                      setNotesPageGottenDetails(note.details);
+                      setNotesPageGottenTitle(note.title);
+                      history.push("/take-note");
+                    }}
+                  >
+                    <Note
+                      title={note.title}
+                      date={note.date}
+                      isOnNotesPage={isOnNotesPage.current}
+                    />
+                  </div>
                 );
               })
             )

@@ -4,7 +4,14 @@ import SideBar from "../../components/SideBar/SideBar";
 import { NoteContent } from "../../NotesContent";
 import "./takeNotePage.scss";
 
-const TakeNotePage = () => {
+const TakeNotePage = ({
+  notesPageGottenTitle,
+  notesPageGottenDate,
+  notesPageGottenDetails,
+  setNotesPageGottenTitle,
+  setNotesPageGottenDetails,
+  isFromNotesPage,
+}) => {
   const [noteTitle, setNoteTitle] = useState("");
   const [noteDetails, setNoteDetails] = useState("");
   const [gottenTitle, setGottenTitle] = useState("");
@@ -18,8 +25,14 @@ const TakeNotePage = () => {
     isSideBarNoteClicked
       ? NoteContent.push({
           title: gottenTitle,
-          date: gottenDate,
+          date: noteDate.current,
           details: gottenDetails,
+        })
+      : isFromNotesPage
+      ? NoteContent.push({
+          title: notesPageGottenTitle,
+          date: noteDate.current,
+          details: notesPageGottenDetails,
         })
       : NoteContent.push({
           title: noteTitle,
@@ -48,10 +61,18 @@ const TakeNotePage = () => {
               type="text"
               id="title"
               autoFocus
-              value={isSideBarNoteClicked ? gottenTitle : noteTitle}
+              value={
+                isSideBarNoteClicked
+                  ? gottenTitle
+                  : isFromNotesPage
+                  ? notesPageGottenTitle
+                  : noteTitle
+              }
               onChange={({ target }) => {
                 isSideBarNoteClicked
                   ? setGottenTitle(target.value)
+                  : isFromNotesPage
+                  ? setNotesPageGottenTitle(target.value)
                   : setNoteTitle(target.value);
               }}
             />
@@ -60,7 +81,11 @@ const TakeNotePage = () => {
             <p className="takeNotesPage__main--date">
               Date:{" "}
               <span>
-                {isSideBarNoteClicked ? gottenDate : noteDate.current}
+                {isSideBarNoteClicked
+                  ? gottenDate
+                  : isFromNotesPage
+                  ? notesPageGottenDate
+                  : noteDate.current}
               </span>
             </p>
             <button
@@ -76,10 +101,18 @@ const TakeNotePage = () => {
             </button>
           </div>
           <textarea
-            value={isSideBarNoteClicked ? gottenDetails : noteDetails}
+            value={
+              isSideBarNoteClicked
+                ? gottenDetails
+                : isFromNotesPage
+                ? notesPageGottenDetails
+                : noteDetails
+            }
             onChange={({ target }) => {
               isSideBarNoteClicked
                 ? setGottenDetails(target.value)
+                : isFromNotesPage
+                ? setNotesPageGottenDetails(target.value)
                 : setNoteDetails(target.value);
             }}
           />
