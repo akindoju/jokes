@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import Note from "../../components/Note/Note";
+// import Note from "../../components/Note/Note";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import SideBarNote from "../../components/Note/Note";
 import { NoteContent } from "../../NotesContent";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -9,9 +10,6 @@ import "./notesPage.scss";
 
 const NotesPage = () => {
   const [searchValue, setSearchValue] = useState("");
-  // const [gottenTitle, setGottenTitle] = useState("");
-  // const [gottenDate, setGottenDate] = useState("");
-  // const [gottenDetails, setGottenDetails] = useState("");
   const isOnNotesPage = useRef(true);
   const history = useHistory();
 
@@ -44,14 +42,26 @@ const NotesPage = () => {
           {NoteContent.length > 0 ? (
             searchValue === "" ? (
               NoteContent.map((note) => {
-                return <Note title={note.title} date={note.date} />;
+                return (
+                  <SideBarNote
+                    title={note.title}
+                    date={note.date}
+                    isOnNotesPage={isOnNotesPage.current}
+                  />
+                );
               })
             ) : (
               //filter notes acc. to search value
               NoteContent.filter((note) =>
                 note.title.toLowerCase().includes(searchValue.toLowerCase())
               ).map((note) => {
-                return <Note title={note.title} date={note.date} />;
+                return (
+                  <SideBarNote
+                    title={note.title}
+                    date={note.date}
+                    isOnNotesPage={isOnNotesPage.current}
+                  />
+                );
               })
             )
           ) : (

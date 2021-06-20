@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import SideBarNote from "../SideBarNote/SideBarNote";
+import SideBarNote from "../Note/Note";
 import SearchBar from "../SearchBar/SearchBar";
 import { NoteContent } from "../../NotesContent";
 import { useHistory } from "react-router";
@@ -56,7 +56,11 @@ const SideBar = ({
                   setGottenDetails(note.details);
                 }}
               >
-                <SideBarNote title={note.title} date={note.date} />
+                <SideBarNote
+                  title={note.title}
+                  date={note.date}
+                  isOnSideBar={isOnSideBar.current}
+                />
               </div>
             );
           })
@@ -76,7 +80,11 @@ const SideBar = ({
                   setGottenDetails(note.details);
                 }}
               >
-                <SideBarNote title={note.title} date={note.date} />
+                <SideBarNote
+                  title={note.title}
+                  date={note.date}
+                  isOnSideBar={isOnSideBar.current}
+                />
               </div>
             );
           })
