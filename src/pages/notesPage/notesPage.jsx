@@ -47,21 +47,36 @@ const NotesPage = ({
             searchValue === "" ? (
               NoteContent.map((note) => {
                 return (
-                  <div
-                    className="notesPageNoteContainer"
-                    onClick={() => {
-                      setNotesPageGottenDate(note.date);
-                      setNotesPageGottenDetails(note.details);
-                      setNotesPageGottenTitle(note.title);
-                      setIsFromNotesPage(true);
-                      history.push("/take-note");
-                    }}
-                  >
-                    <Note
-                      title={note.title}
-                      date={note.date}
-                      isOnNotesPage={isOnNotesPage.current}
-                    />
+                  <div className="notesPageNoteContainer">
+                    <div
+                      key={note.key}
+                      className="notesPageNoteContainer__note"
+                      onClick={() => {
+                        setNotesPageGottenDate(note.date);
+                        setNotesPageGottenDetails(note.details);
+                        setNotesPageGottenTitle(note.title);
+                        setIsFromNotesPage(true);
+                        history.push("/take-note");
+                      }}
+                    >
+                      <Note
+                        title={note.title}
+                        date={note.date}
+                        isOnNotesPage={isOnNotesPage.current}
+                      />
+                    </div>
+                    <svg
+                      onClick={() => alert("Yes")}
+                      className="notesPageNoteContainer__svg"
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <title>delete_forever</title>
+                      <path d="M15.516 3.984h3.469v2.016h-13.969v-2.016h3.469l1.031-0.984h4.969zM8.438 11.859l2.156 2.156-2.109 2.109 1.406 1.406 2.109-2.109 2.109 2.109 1.406-1.406-2.109-2.109 2.109-2.156-1.406-1.406-2.109 2.156-2.109-2.156zM6 18.984v-12h12v12q0 0.797-0.609 1.406t-1.406 0.609h-7.969q-0.797 0-1.406-0.609t-0.609-1.406z"></path>
+                    </svg>
                   </div>
                 );
               })
@@ -72,6 +87,8 @@ const NotesPage = ({
               ).map((note) => {
                 return (
                   <div
+                    key={note.key}
+                    className="notesPageNoteContainer"
                     onClick={() => {
                       setNotesPageGottenDate(note.date);
                       setNotesPageGottenDetails(note.details);
@@ -84,6 +101,16 @@ const NotesPage = ({
                       date={note.date}
                       isOnNotesPage={isOnNotesPage.current}
                     />
+                    <svg
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <title>delete_forever</title>
+                      <path d="M15.516 3.984h3.469v2.016h-13.969v-2.016h3.469l1.031-0.984h4.969zM8.438 11.859l2.156 2.156-2.109 2.109 1.406 1.406 2.109-2.109 2.109 2.109 1.406-1.406-2.109-2.109 2.109-2.156-1.406-1.406-2.109 2.156-2.109-2.156zM6 18.984v-12h12v12q0 0.797-0.609 1.406t-1.406 0.609h-7.969q-0.797 0-1.406-0.609t-0.609-1.406z"></path>
+                    </svg>
                   </div>
                 );
               })
