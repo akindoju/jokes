@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Header from "../../components/Header/Header";
 import SideBar from "../../components/SideBar/SideBar";
 import ConfirmBox from "../../components/ConfirmBox/ConfirmBox";
@@ -15,13 +16,14 @@ const TakeNotePage = ({
 }) => {
   const [noteTitle, setNoteTitle] = useState("");
   const [noteDetails, setNoteDetails] = useState("");
+  const [noteKey, setNoteKey] = useState("");
   const [gottenTitle, setGottenTitle] = useState("");
   const [gottenDate, setGottenDate] = useState("");
   const [gottenDetails, setGottenDetails] = useState("");
   const [isReloadingPage, setIsReloadingPage] = useState(false);
   const [isSideBarNoteClicked, setIsSideBarNoteClicked] = useState(false);
   const [isDeleteBtnClicked, setIsDeleteBtnClicked] = useState(false);
-  const noteDate = useRef(new Date().toDateString());
+  const noteDate = useRef(new Date().toLocaleString());
 
   const saveNote = () => {
     isSideBarNoteClicked
@@ -40,6 +42,7 @@ const TakeNotePage = ({
           title: noteTitle,
           date: noteDate.current,
           details: noteDetails,
+          key: uuidv4(), //to give unique id
         });
   };
 
@@ -53,6 +56,7 @@ const TakeNotePage = ({
           setGottenDate={setGottenDate}
           setGottenDetails={setGottenDetails}
           setGottenTitle={setGottenTitle}
+          setNoteKey={setNoteKey}
         />
 
         <div className="takeNotesPage__right">
@@ -81,7 +85,7 @@ const TakeNotePage = ({
           </div>
           <div className="takeNotesPage__right__sub">
             <p className="takeNotesPage__right__sub--date">
-              Date:{" "}
+              Date:
               <span>
                 {isSideBarNoteClicked
                   ? gottenDate
@@ -115,7 +119,10 @@ const TakeNotePage = ({
             </div>
           </div>
           {isDeleteBtnClicked && (
-            <ConfirmBox setIsDeleteBtnClicked={setIsDeleteBtnClicked} />
+            <ConfirmBox
+              setIsDeleteBtnClicked={setIsDeleteBtnClicked}
+              noteKey={noteKey}
+            />
           )}
           <textarea
             value={

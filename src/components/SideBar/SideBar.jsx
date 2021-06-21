@@ -11,6 +11,7 @@ const SideBar = ({
   setGottenDetails,
   setGottenDate,
   setGottenTitle,
+  setNoteKey,
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const isOnSideBar = useRef(true);
@@ -47,9 +48,10 @@ const SideBar = ({
           NoteContent.map((note) => {
             return (
               <div
+                key={note.key}
                 className="sideBarNoteContainer"
                 onClick={() => {
-                  console.log("clicked");
+                  setNoteKey(note.key);
                   setIsSideBarNoteClicked(true);
                   setGottenTitle(note.title);
                   setGottenDate(note.date);
@@ -71,9 +73,10 @@ const SideBar = ({
           ).map((note) => {
             return (
               <div
+                key={note.key}
                 className="sideBarNoteContainer"
                 onClick={() => {
-                  console.log("clicked");
+                  setNoteKey(note.key);
                   setIsSideBarNoteClicked(true);
                   setGottenTitle(note.title);
                   setGottenDate(note.date);
