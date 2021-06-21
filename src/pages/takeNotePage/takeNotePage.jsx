@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Header from "../../components/Header/Header";
 import SideBar from "../../components/SideBar/SideBar";
+import ConfirmBox from "../../components/ConfirmBox/ConfirmBox";
 import { NoteContent } from "../../NotesContent";
 import "./takeNotePage.scss";
 
@@ -19,6 +20,7 @@ const TakeNotePage = ({
   const [gottenDetails, setGottenDetails] = useState("");
   const [isReloadingPage, setIsReloadingPage] = useState(false);
   const [isSideBarNoteClicked, setIsSideBarNoteClicked] = useState(false);
+  const [isDeleteBtnClicked, setIsDeleteBtnClicked] = useState(false);
   const noteDate = useRef(new Date().toDateString());
 
   const saveNote = () => {
@@ -89,7 +91,12 @@ const TakeNotePage = ({
               </span>
             </p>
             <div className="takeNotesPage__right__sub--buttons">
-              <button className="takeNotesPage__right__sub--buttons--1">
+              <button
+                className="takeNotesPage__right__sub--buttons--1"
+                onClick={() => {
+                  setIsDeleteBtnClicked(true);
+                }}
+              >
                 Delete
               </button>
 
@@ -107,6 +114,9 @@ const TakeNotePage = ({
               </button>
             </div>
           </div>
+          {isDeleteBtnClicked && (
+            <ConfirmBox setIsDeleteBtnClicked={setIsDeleteBtnClicked} />
+          )}
           <textarea
             value={
               isSideBarNoteClicked
