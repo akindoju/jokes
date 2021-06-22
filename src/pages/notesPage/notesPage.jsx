@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Note from "../../components/Note/Note";
+import ConfirmBox from "../../components/ConfirmBox/ConfirmBox";
 import { NoteContent } from "../../NotesContent";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -12,6 +13,10 @@ const NotesPage = ({
   setNotesPageGottenDate,
   setNotesPageGottenDetails,
   setIsNotesPageNoteClicked,
+  isDeleteBtnClicked,
+  setIsDeleteBtnClicked,
+  noteKey,
+  setNoteKey,
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const isOnNotesPage = useRef(true);
@@ -74,6 +79,7 @@ const NotesPage = ({
                       key={note.key}
                       className="notesPageNoteContainer__note"
                       onClick={() => {
+                        setNoteKey(note.key);
                         setNotesPageGottenDate(note.date);
                         setNotesPageGottenDetails(note.details);
                         setNotesPageGottenTitle(note.title);
@@ -88,7 +94,9 @@ const NotesPage = ({
                       />
                     </div>
                     <svg
-                      onClick={() => alert("Yes")}
+                      onClick={() => {
+                        setIsDeleteBtnClicked(true);
+                      }}
                       className="notesPageNoteContainer__svg"
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -111,6 +119,7 @@ const NotesPage = ({
                       key={note.key}
                       className="notesPageNoteContainer__note"
                       onClick={() => {
+                        setNoteKey(note.key);
                         setNotesPageGottenDate(note.date);
                         setNotesPageGottenDetails(note.details);
                         setNotesPageGottenTitle(note.title);
@@ -125,7 +134,9 @@ const NotesPage = ({
                       />
                     </div>
                     <svg
-                      onClick={() => alert("Yes")}
+                      onClick={() => {
+                        setIsDeleteBtnClicked(true);
+                      }}
                       className="notesPageNoteContainer__svg"
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -161,6 +172,12 @@ const NotesPage = ({
                 </Link>
               </div>
             </div>
+          )}
+          {isDeleteBtnClicked && (
+            <ConfirmBox
+              setIsDeleteBtnClicked={setIsDeleteBtnClicked}
+              noteKey={noteKey}
+            />
           )}
         </div>
       </div>

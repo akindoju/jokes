@@ -13,16 +13,18 @@ const TakeNotePage = ({
   setNotesPageGottenTitle,
   setNotesPageGottenDetails,
   isNotesPageNoteClicked,
+  setIsDeleteBtnClicked,
+  isDeleteBtnClicked,
+  noteKey,
+  setNoteKey,
 }) => {
   const [noteTitle, setNoteTitle] = useState("");
   const [noteDetails, setNoteDetails] = useState("");
-  const [noteKey, setNoteKey] = useState("");
   const [gottenTitle, setGottenTitle] = useState("");
   const [gottenDate, setGottenDate] = useState("");
   const [gottenDetails, setGottenDetails] = useState("");
   const [isReloadingPage, setIsReloadingPage] = useState(false);
   const [isSideBarNoteClicked, setIsSideBarNoteClicked] = useState(false);
-  const [isDeleteBtnClicked, setIsDeleteBtnClicked] = useState(false);
   const noteDate = useRef(new Date().toLocaleString());
 
   const saveNote = () => {
