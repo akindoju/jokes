@@ -21,6 +21,10 @@ const SideBar = ({
     IsReloadingPage && window.location.reload();
   }, [IsReloadingPage]);
 
+  const sideBarFilteredNotes = NoteContent.filter((note) =>
+    note.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   return (
     <div className="sideBar">
       <svg
@@ -66,11 +70,9 @@ const SideBar = ({
               </div>
             );
           })
-        ) : (
-          //filter notes acc. to search value
-          NoteContent.filter((note) =>
-            note.title.toLowerCase().includes(searchValue.toLowerCase())
-          ).map((note) => {
+        ) : //filter notes acc. to search value
+        sideBarFilteredNotes.length > 0 ? (
+          sideBarFilteredNotes.map((note) => {
             return (
               <div
                 key={note.key}
@@ -91,6 +93,8 @@ const SideBar = ({
               </div>
             );
           })
+        ) : (
+          <p className="noNotes">Nothing found!</p>
         )
       ) : (
         <p className="noNotes">You currently have no notes!</p>

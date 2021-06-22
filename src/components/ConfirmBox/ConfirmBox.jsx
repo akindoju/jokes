@@ -21,7 +21,7 @@ const ConfirmBox = ({ setIsDeleteBtnClicked, noteKey }) => {
             deleteNote();
           }}
         >
-          Delete
+          Confirm
         </button>
         <button
           className="confirmBox__btn--2"

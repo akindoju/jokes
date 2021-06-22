@@ -17,6 +17,10 @@ const NotesPage = ({
   const isOnNotesPage = useRef(true);
   const history = useHistory();
 
+  const notesPageFilteredNote = NoteContent.filter((note) =>
+    note.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   return (
     <div className="notesPageContainer">
       <Header />
@@ -80,11 +84,9 @@ const NotesPage = ({
                   </div>
                 );
               })
-            ) : (
-              //filter notes acc. to search value
-              NoteContent.filter((note) =>
-                note.title.toLowerCase().includes(searchValue.toLowerCase())
-              ).map((note) => {
+            ) : //filter notes acc. to search value
+            notesPageFilteredNote.length > 0 ? (
+              notesPageFilteredNote.map((note) => {
                 return (
                   <div className="notesPageNoteContainer">
                     <div
@@ -119,6 +121,8 @@ const NotesPage = ({
                   </div>
                 );
               })
+            ) : (
+              <p className="noNotes">Nothing found!</p>
             )
           ) : (
             <div>
