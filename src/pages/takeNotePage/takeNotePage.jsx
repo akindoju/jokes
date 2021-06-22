@@ -12,7 +12,7 @@ const TakeNotePage = ({
   notesPageGottenDetails,
   setNotesPageGottenTitle,
   setNotesPageGottenDetails,
-  isFromNotesPage,
+  isNotesPageNoteClicked,
 }) => {
   const [noteTitle, setNoteTitle] = useState("");
   const [noteDetails, setNoteDetails] = useState("");
@@ -32,7 +32,7 @@ const TakeNotePage = ({
           date: noteDate.current,
           details: gottenDetails,
         })
-      : isFromNotesPage
+      : isNotesPageNoteClicked
       ? NoteContent.push({
           title: notesPageGottenTitle,
           date: noteDate.current,
@@ -70,14 +70,14 @@ const TakeNotePage = ({
               value={
                 isSideBarNoteClicked
                   ? gottenTitle
-                  : isFromNotesPage
+                  : isNotesPageNoteClicked
                   ? notesPageGottenTitle
                   : noteTitle
               }
               onChange={({ target }) => {
                 isSideBarNoteClicked
                   ? setGottenTitle(target.value)
-                  : isFromNotesPage
+                  : isNotesPageNoteClicked
                   ? setNotesPageGottenTitle(target.value)
                   : setNoteTitle(target.value);
               }}
@@ -89,7 +89,7 @@ const TakeNotePage = ({
               <span>
                 {isSideBarNoteClicked
                   ? gottenDate
-                  : isFromNotesPage
+                  : isNotesPageNoteClicked
                   ? notesPageGottenDate
                   : noteDate.current}
               </span>
@@ -128,14 +128,14 @@ const TakeNotePage = ({
             value={
               isSideBarNoteClicked
                 ? gottenDetails
-                : isFromNotesPage
+                : isNotesPageNoteClicked
                 ? notesPageGottenDetails
                 : noteDetails
             }
             onChange={({ target }) => {
               isSideBarNoteClicked
                 ? setGottenDetails(target.value)
-                : isFromNotesPage
+                : isNotesPageNoteClicked
                 ? setNotesPageGottenDetails(target.value)
                 : setNoteDetails(target.value);
             }}

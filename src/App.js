@@ -9,18 +9,20 @@ function App() {
   const [notesPageGottenTitle, setNotesPageGottenTitle] = useState("");
   const [notesPageGottenDate, setNotesPageGottenDate] = useState("");
   const [notesPageGottenDetails, setNotesPageGottenDetails] = useState("");
-  const [isFromNotesPage, setIsFromNotesPage] = useState(false);
+  const [isNotesPageNoteClicked, setIsNotesPageNoteClicked] = useState(false);
 
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Homepage} />
+        <Route exact path="/">
+          <Homepage setIsNotesPageNoteClicked={setIsNotesPageNoteClicked} />
+        </Route>
         <Route path="/notes">
           <NotesPage
             setNotesPageGottenTitle={setNotesPageGottenTitle}
             setNotesPageGottenDate={setNotesPageGottenDate}
             setNotesPageGottenDetails={setNotesPageGottenDetails}
-            setIsFromNotesPage={setIsFromNotesPage}
+            setIsNotesPageNoteClicked={setIsNotesPageNoteClicked}
           />
         </Route>
         <Route path="/take-note">
@@ -30,7 +32,7 @@ function App() {
             notesPageGottenDetails={notesPageGottenDetails}
             setNotesPageGottenTitle={setNotesPageGottenTitle}
             setNotesPageGottenDetails={setNotesPageGottenDetails}
-            isFromNotesPage={isFromNotesPage}
+            isNotesPageNoteClicked={isNotesPageNoteClicked}
           />
         </Route>
       </Switch>

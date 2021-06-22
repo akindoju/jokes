@@ -2,7 +2,7 @@ import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import "./homepage.scss";
 
-const Homepage = () => {
+const Homepage = ({ setIsNotesPageNoteClicked }) => {
   return (
     <div className="homepageContainer">
       <Header />
@@ -23,6 +23,9 @@ const Homepage = () => {
 
         <Link className="homepage__link Link" to="/take-note">
           <svg
+            onClick={() => {
+              setIsNotesPageNoteClicked(false);
+            }}
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             width="24"

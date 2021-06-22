@@ -26,7 +26,7 @@ const SideBar = ({
       <svg
         onClick={(event) => {
           event.preventDefault();
-          history.goBack();
+          history.push("/");
         }}
         className="sideBar__backBtn"
         version="1.1"

@@ -11,7 +11,7 @@ const NotesPage = ({
   setNotesPageGottenTitle,
   setNotesPageGottenDate,
   setNotesPageGottenDetails,
-  setIsFromNotesPage,
+  setIsNotesPageNoteClicked,
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const isOnNotesPage = useRef(true);
@@ -55,7 +55,7 @@ const NotesPage = ({
                         setNotesPageGottenDate(note.date);
                         setNotesPageGottenDetails(note.details);
                         setNotesPageGottenTitle(note.title);
-                        setIsFromNotesPage(true);
+                        setIsNotesPageNoteClicked(true);
                         history.push("/take-note");
                       }}
                     >
@@ -86,22 +86,27 @@ const NotesPage = ({
                 note.title.toLowerCase().includes(searchValue.toLowerCase())
               ).map((note) => {
                 return (
-                  <div
-                    key={note.key}
-                    className="notesPageNoteContainer"
-                    onClick={() => {
-                      setNotesPageGottenDate(note.date);
-                      setNotesPageGottenDetails(note.details);
-                      setNotesPageGottenTitle(note.title);
-                      history.push("/take-note");
-                    }}
-                  >
-                    <Note
-                      title={note.title}
-                      date={note.date}
-                      isOnNotesPage={isOnNotesPage.current}
-                    />
+                  <div className="notesPageNoteContainer">
+                    <div
+                      key={note.key}
+                      className="notesPageNoteContainer__note"
+                      onClick={() => {
+                        setNotesPageGottenDate(note.date);
+                        setNotesPageGottenDetails(note.details);
+                        setNotesPageGottenTitle(note.title);
+                        setIsNotesPageNoteClicked(true);
+                        history.push("/take-note");
+                      }}
+                    >
+                      <Note
+                        title={note.title}
+                        date={note.date}
+                        isOnNotesPage={isOnNotesPage.current}
+                      />
+                    </div>
                     <svg
+                      onClick={() => alert("Yes")}
+                      className="notesPageNoteContainer__svg"
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
