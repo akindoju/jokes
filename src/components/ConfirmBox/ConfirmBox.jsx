@@ -7,7 +7,7 @@ const ConfirmBox = ({ setIsDeleteBtnClicked, noteKey }) => {
       return note.key === noteKey;
     });
 
-    NoteContent.splice(filteredNote + 1, 1);
+    NoteContent.splice(filteredNote - 1, 1);
     // window.location.reload();
   };
 
