@@ -25,6 +25,7 @@ const TakeNotePage = ({
   const [gottenDetails, setGottenDetails] = useState("");
   const [isReloadingPage, setIsReloadingPage] = useState(false);
   const [isSideBarNoteClicked, setIsSideBarNoteClicked] = useState(false);
+  const [isUpdatingNote, setIsUpdatingNote] = useState(false);
   const noteDate = useRef(new Date().toLocaleString());
 
   const saveNote = () => {
@@ -46,6 +47,40 @@ const TakeNotePage = ({
           details: noteDetails,
           key: uuidv4(), //to give unique id
         });
+  };
+
+  // const updateNote = () => {
+  //   const filteredNoteKeys = NoteContent.find((note) => {
+  //     return note.key === noteKey;
+  //   });
+
+  //   if (filteredNoteKeys !== undefined) {
+  //     setIsDeleteBtnClicked(true);
+  //     setIsUpdatingNote(true);
+  //   }
+
+  //   // const noteKeysArr = Object.entries(filteredNoteKeys);
+
+  //   // const filteredNoteKeysArr = noteKeysArr.map((key) => {
+  //   //   return key === noteKey;
+  //   // });
+
+  //   console.log(filteredNoteKeys, "filteredNoteKeys");
+  //   // console.log(filteredNoteKeysArr, "filteredNoteKeysArr");
+  //   // console.log(noteKeysArr, "noteKeysArr");
+  // };
+
+  const handleBtnClick = () => {
+    const filteredNoteKeys = NoteContent.find((note) => {
+      return note.key === noteKey;
+    });
+
+    if (filteredNoteKeys !== undefined) {
+      setIsDeleteBtnClicked(true);
+      setIsUpdatingNote(true);
+    } else {
+      saveNote();
+    }
   };
 
   return (
@@ -109,7 +144,7 @@ const TakeNotePage = ({
               <button
                 className="takeNotesPage__right__sub--buttons--2"
                 onClick={() => {
-                  saveNote();
+                  handleBtnClick();
                   setIsReloadingPage(true);
                   setTimeout(() => {
                     setIsReloadingPage(false);
@@ -122,8 +157,16 @@ const TakeNotePage = ({
           </div>
           {isDeleteBtnClicked && (
             <ConfirmBox
+              isDeleteBtnClicked={isDeleteBtnClicked}
               setIsDeleteBtnClicked={setIsDeleteBtnClicked}
+              isUpdatingNote={isUpdatingNote}
+              setGottenTitle={setGottenTitle}
+              setGottenDetails={setGottenDetails}
+              setGottenDate={setGottenDate}
               noteKey={noteKey}
+              noteTitle={noteTitle}
+              noteDetails={noteDetails}
+              noteDate={noteDate.current}
             />
           )}
           <textarea
