@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Note from "../../components/Note/Note";
-import ConfirmBox from "../../components/ConfirmBox/ConfirmBox";
+import DeleteConfirmBox from "../../components/DeleteConfirmBox/DeleteConfirmBox";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./notesPage.scss";
@@ -183,7 +183,7 @@ const NotesPage = ({
             </div>
           )}
           {isDeleteBtnClicked && (
-            <ConfirmBox
+            <DeleteConfirmBox
               setIsDeleteBtnClicked={setIsDeleteBtnClicked}
               noteKey={noteKey}
             />

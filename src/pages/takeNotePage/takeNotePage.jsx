@@ -2,7 +2,8 @@ import { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Header from "../../components/Header/Header";
 import SideBar from "../../components/SideBar/SideBar";
-import ConfirmBox from "../../components/ConfirmBox/ConfirmBox";
+import DeleteConfirmBox from "../../components/DeleteConfirmBox/DeleteConfirmBox";
+import UpdateConfirmBox from "../../components/UpdateConfirmBox/UpdateConfirmBox";
 import "./takeNotePage.scss";
 
 const TakeNotePage = ({
@@ -56,7 +57,6 @@ const TakeNotePage = ({
     });
 
     if (filteredNoteKeys.includes(true)) {
-      setIsDeleteBtnClicked(true);
       setIsUpdatingNote(true);
     } else {
       saveNote();
@@ -137,21 +137,16 @@ const TakeNotePage = ({
             </div>
           </div>
           {isDeleteBtnClicked && (
-            <ConfirmBox
+            <DeleteConfirmBox
               NoteContent={NoteContent}
               setNoteContent={setNoteContent}
-              isDeleteBtnClicked={isDeleteBtnClicked}
               setIsDeleteBtnClicked={setIsDeleteBtnClicked}
-              isUpdatingNote={isUpdatingNote}
-              setIsUpdatingNote={setIsUpdatingNote}
-              setGottenTitle={setGottenTitle}
-              setGottenDetails={setGottenDetails}
-              setGottenDate={setGottenDate}
               noteKey={noteKey}
-              noteTitle={noteTitle}
-              noteDetails={noteDetails}
-              noteDate={noteDate.current}
             />
+          )}
+
+          {isUpdatingNote && (
+            <UpdateConfirmBox setIsUpdatingNote={setIsUpdatingNote} />
           )}
           <textarea
             value={

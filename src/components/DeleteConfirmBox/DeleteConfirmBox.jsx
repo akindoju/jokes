@@ -1,18 +1,10 @@
-import "./ConfirmBox.scss";
+import "./DeleteConfirmBox.scss";
 
-const ConfirmBox = ({
+const DeleteConfirmBox = ({
   NoteContent,
   setNoteContent,
   setIsDeleteBtnClicked,
   noteKey,
-  isUpdatingNote,
-  setIsUpdatingNote,
-  setGottenDate,
-  setGottenDetails,
-  setGottenTitle,
-  noteTitle,
-  noteDetails,
-  noteDate,
 }) => {
   const deleteNote = () => {
     const filteredNoteContent = NoteContent.filter((note) => {
@@ -23,28 +15,17 @@ const ConfirmBox = ({
 
     console.log(NoteContent);
 
-    // window.location.reload();
+    window.location.reload();
   };
-
-  // const updateNote = () => {
-  //   setGottenTitle(noteTitle);
-  //   setGottenDetails(noteDetails);
-  //   setGottenDate(noteDate);
-  // };
 
   return (
     <div className="confirmBox">
-      {isUpdatingNote ? (
-        <p className="confirmBox__text">Update Note?</p>
-      ) : (
-        <p className="confirmBox__text">Delete Note?</p>
-      )}
+      <p className="confirmBox__text">Delete Note?</p>
       <div className="confirmBox__btn">
         <button
           className="confirmBox__btn--1"
           onClick={() => {
             deleteNote();
-            // isUpdatingNote ? updateNote() : deleteNote();
           }}
         >
           Confirm
@@ -53,7 +34,6 @@ const ConfirmBox = ({
           className="confirmBox__btn--2"
           onClick={() => {
             setIsDeleteBtnClicked(false);
-            setIsUpdatingNote(false);
           }}
         >
           Cancel
@@ -63,4 +43,4 @@ const ConfirmBox = ({
   );
 };
 
-export default ConfirmBox;
+export default DeleteConfirmBox;
