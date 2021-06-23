@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import Note from "../Note/Note";
 import SearchBar from "../SearchBar/SearchBar";
-import { NoteContent } from "../../NotesContent";
 import { useHistory } from "react-router";
 import "./SideBar.scss";
 
 const SideBar = ({
+  NoteContent,
   IsReloadingPage,
   setIsSideBarNoteClicked,
   setGottenDetails,

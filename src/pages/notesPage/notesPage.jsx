@@ -3,12 +3,13 @@ import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Note from "../../components/Note/Note";
 import ConfirmBox from "../../components/ConfirmBox/ConfirmBox";
-import { NoteContent } from "../../NotesContent";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./notesPage.scss";
 
 const NotesPage = ({
+  NoteContent,
+  setNoteContent,
   setNotesPageGottenTitle,
   setNotesPageGottenDate,
   setNotesPageGottenDetails,
@@ -74,7 +75,7 @@ const NotesPage = ({
             searchValue === "" ? (
               NoteContent.map((note) => {
                 return (
-                  <div className="notesPageNoteContainer">
+                  <div className="notesPageNoteContainer" key={note.key}>
                     <div
                       key={note.key}
                       className="notesPageNoteContainer__note"
@@ -96,6 +97,13 @@ const NotesPage = ({
                     <svg
                       onClick={() => {
                         setIsDeleteBtnClicked(true);
+                        const filteredNoteContent = NoteContent.filter(
+                          (note) => {
+                            return note.key !== noteKey;
+                          }
+                        );
+
+                        setNoteContent(filteredNoteContent);
                       }}
                       className="notesPageNoteContainer__svg"
                       version="1.1"
@@ -114,7 +122,7 @@ const NotesPage = ({
             notesPageFilteredNote.length > 0 ? (
               notesPageFilteredNote.map((note) => {
                 return (
-                  <div className="notesPageNoteContainer">
+                  <div className="notesPageNoteContainer" key={note.key}>
                     <div
                       key={note.key}
                       className="notesPageNoteContainer__note"
@@ -128,6 +136,7 @@ const NotesPage = ({
                       }}
                     >
                       <Note
+                        key={note.key}
                         title={note.title}
                         date={note.date}
                         isOnNotesPage={isOnNotesPage.current}

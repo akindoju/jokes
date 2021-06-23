@@ -6,6 +6,7 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
+  const [NoteContent, setNoteContent] = useState([]);
   const [notesPageGottenTitle, setNotesPageGottenTitle] = useState("");
   const [notesPageGottenDate, setNotesPageGottenDate] = useState("");
   const [notesPageGottenDetails, setNotesPageGottenDetails] = useState("");
@@ -21,6 +22,8 @@ function App() {
         </Route>
         <Route path="/notes">
           <NotesPage
+            NoteContent={NoteContent}
+            setNoteContent={setNoteContent}
             setNotesPageGottenTitle={setNotesPageGottenTitle}
             setNotesPageGottenDate={setNotesPageGottenDate}
             setNotesPageGottenDetails={setNotesPageGottenDetails}
@@ -33,6 +36,8 @@ function App() {
         </Route>
         <Route path="/take-note">
           <TakeNotePage
+            NoteContent={NoteContent}
+            setNoteContent={setNoteContent}
             notesPageGottenTitle={notesPageGottenTitle}
             notesPageGottenDate={notesPageGottenDate}
             notesPageGottenDetails={notesPageGottenDetails}

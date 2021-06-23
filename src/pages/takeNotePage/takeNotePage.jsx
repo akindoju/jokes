@@ -3,10 +3,11 @@ import { v4 as uuidv4 } from "uuid";
 import Header from "../../components/Header/Header";
 import SideBar from "../../components/SideBar/SideBar";
 import ConfirmBox from "../../components/ConfirmBox/ConfirmBox";
-import { NoteContent } from "../../NotesContent";
 import "./takeNotePage.scss";
 
 const TakeNotePage = ({
+  NoteContent,
+  setNoteContent,
   notesPageGottenTitle,
   notesPageGottenDate,
   notesPageGottenDetails,
@@ -49,33 +50,12 @@ const TakeNotePage = ({
         });
   };
 
-  // const updateNote = () => {
-  //   const filteredNoteKeys = NoteContent.find((note) => {
-  //     return note.key === noteKey;
-  //   });
-
-  //   if (filteredNoteKeys !== undefined) {
-  //     setIsDeleteBtnClicked(true);
-  //     setIsUpdatingNote(true);
-  //   }
-
-  //   // const noteKeysArr = Object.entries(filteredNoteKeys);
-
-  //   // const filteredNoteKeysArr = noteKeysArr.map((key) => {
-  //   //   return key === noteKey;
-  //   // });
-
-  //   console.log(filteredNoteKeys, "filteredNoteKeys");
-  //   // console.log(filteredNoteKeysArr, "filteredNoteKeysArr");
-  //   // console.log(noteKeysArr, "noteKeysArr");
-  // };
-
-  const handleBtnClick = () => {
-    const filteredNoteKeys = NoteContent.find((note) => {
+  const savingNote = () => {
+    const filteredNoteKeys = NoteContent.map((note) => {
       return note.key === noteKey;
     });
 
-    if (filteredNoteKeys !== undefined) {
+    if (filteredNoteKeys.includes(true)) {
       setIsDeleteBtnClicked(true);
       setIsUpdatingNote(true);
     } else {
@@ -88,6 +68,7 @@ const TakeNotePage = ({
       <Header />
       <div className="takeNotesPage">
         <SideBar
+          NoteContent={NoteContent}
           isReloadingPage={isReloadingPage}
           setIsSideBarNoteClicked={setIsSideBarNoteClicked}
           setGottenDate={setGottenDate}
@@ -144,7 +125,7 @@ const TakeNotePage = ({
               <button
                 className="takeNotesPage__right__sub--buttons--2"
                 onClick={() => {
-                  handleBtnClick();
+                  savingNote();
                   setIsReloadingPage(true);
                   setTimeout(() => {
                     setIsReloadingPage(false);
@@ -157,9 +138,12 @@ const TakeNotePage = ({
           </div>
           {isDeleteBtnClicked && (
             <ConfirmBox
+              NoteContent={NoteContent}
+              setNoteContent={setNoteContent}
               isDeleteBtnClicked={isDeleteBtnClicked}
               setIsDeleteBtnClicked={setIsDeleteBtnClicked}
               isUpdatingNote={isUpdatingNote}
+              setIsUpdatingNote={setIsUpdatingNote}
               setGottenTitle={setGottenTitle}
               setGottenDetails={setGottenDetails}
               setGottenDate={setGottenDate}
