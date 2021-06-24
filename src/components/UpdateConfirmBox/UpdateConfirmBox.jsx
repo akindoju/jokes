@@ -4,9 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 const UpdateConfirmBox = ({
   setIsUpdatingNote,
   NoteContent,
+  setNoteContent,
   gottenTitle,
   gottenDetails,
   noteDate,
+  noteKey,
+  noteTitle,
+  noteDetails,
 }) => {
   const saveNewNote = () => {
     NoteContent.push({
@@ -17,6 +21,22 @@ const UpdateConfirmBox = ({
     });
   };
 
+  const updateNote = () => {
+    const filteredNoteContent = NoteContent.filter((note) => {
+      return note.key !== noteKey;
+    });
+
+    //push overwriting note to filteredArray
+    filteredNoteContent.push({
+      title: gottenTitle,
+      date: noteDate,
+      details: gottenDetails,
+      key: uuidv4(), //to give unique id
+    });
+
+    setNoteContent(filteredNoteContent);
+  };
+
   return (
     <div className="updateBox">
       <p className="updateBox__text">Update Note?</p>
@@ -25,6 +45,7 @@ const UpdateConfirmBox = ({
           className="updateBtn updateBtn--1"
           onClick={() => {
             setIsUpdatingNote(false);
+            updateNote();
           }}
         >
           Update

@@ -148,11 +148,15 @@ const TakeNotePage = ({
           {isUpdatingNote && (
             <UpdateConfirmBox
               NoteContent={NoteContent}
+              setNoteContent={setNoteContent}
               gottenTitle={gottenTitle}
               gottenDetails={gottenDetails}
               noteDate={noteDate.current}
               setIsUpdatingNote={setIsUpdatingNote}
               saveNote={saveNote}
+              noteKey={noteKey}
+              noteTitle={noteTitle}
+              noteDetails={noteDetails}
             />
           )}
           <textarea
