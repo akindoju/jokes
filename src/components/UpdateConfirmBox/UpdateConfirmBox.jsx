@@ -1,6 +1,22 @@
 import "./UpdateConfirmBox.scss";
+import { v4 as uuidv4 } from "uuid";
 
-const UpdateConfirmBox = ({ setIsUpdatingNote }) => {
+const UpdateConfirmBox = ({
+  setIsUpdatingNote,
+  NoteContent,
+  gottenTitle,
+  gottenDetails,
+  noteDate,
+}) => {
+  const saveNewNote = () => {
+    NoteContent.push({
+      title: gottenTitle,
+      date: noteDate,
+      details: gottenDetails,
+      key: uuidv4(), //to give unique id
+    });
+  };
+
   return (
     <div className="updateBox">
       <p className="updateBox__text">Update Note?</p>
@@ -18,6 +34,7 @@ const UpdateConfirmBox = ({ setIsUpdatingNote }) => {
           className="updateBtn updateBtn--2"
           onClick={() => {
             setIsUpdatingNote(false);
+            saveNewNote();
           }}
         >
           Save New
@@ -26,7 +43,6 @@ const UpdateConfirmBox = ({ setIsUpdatingNote }) => {
         <button
           className="updateBtn updateBtn--3"
           onClick={() => {
-            // alert("Cancel");
             setIsUpdatingNote(false);
           }}
         >

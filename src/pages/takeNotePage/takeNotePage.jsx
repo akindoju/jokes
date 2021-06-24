@@ -125,7 +125,7 @@ const TakeNotePage = ({
               <button
                 className="takeNotesPage__right__sub--buttons--2"
                 onClick={() => {
-                  savingNote();
+                  isSideBarNoteClicked ? savingNote() : saveNote();
                   setIsReloadingPage(true);
                   setTimeout(() => {
                     setIsReloadingPage(false);
@@ -146,7 +146,14 @@ const TakeNotePage = ({
           )}
 
           {isUpdatingNote && (
-            <UpdateConfirmBox setIsUpdatingNote={setIsUpdatingNote} />
+            <UpdateConfirmBox
+              NoteContent={NoteContent}
+              gottenTitle={gottenTitle}
+              gottenDetails={gottenDetails}
+              noteDate={noteDate.current}
+              setIsUpdatingNote={setIsUpdatingNote}
+              saveNote={saveNote}
+            />
           )}
           <textarea
             value={
