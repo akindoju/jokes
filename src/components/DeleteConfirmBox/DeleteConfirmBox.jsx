@@ -13,11 +13,8 @@ const DeleteConfirmBox = ({
 
     setNoteContent(filteredNoteContent);
 
-    console.log(NoteContent);
-
     window.location.reload();
   };
-
   return (
     <div className="confirmBox">
       <p className="confirmBox__text">Delete Note?</p>

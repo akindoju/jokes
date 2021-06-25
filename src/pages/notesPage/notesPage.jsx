@@ -97,13 +97,7 @@ const NotesPage = ({
                     <svg
                       onClick={() => {
                         setIsDeleteBtnClicked(true);
-                        const filteredNoteContent = NoteContent.filter(
-                          (note) => {
-                            return note.key !== noteKey;
-                          }
-                        );
-
-                        setNoteContent(filteredNoteContent);
+                        setNoteKey(note.key);
                       }}
                       className="notesPageNoteContainer__svg"
                       version="1.1"
@@ -136,7 +130,6 @@ const NotesPage = ({
                       }}
                     >
                       <Note
-                        key={note.key}
                         title={note.title}
                         date={note.date}
                         isOnNotesPage={isOnNotesPage.current}
@@ -145,6 +138,7 @@ const NotesPage = ({
                     <svg
                       onClick={() => {
                         setIsDeleteBtnClicked(true);
+                        setNoteKey(note.key);
                       }}
                       className="notesPageNoteContainer__svg"
                       version="1.1"
@@ -186,6 +180,8 @@ const NotesPage = ({
             <DeleteConfirmBox
               setIsDeleteBtnClicked={setIsDeleteBtnClicked}
               noteKey={noteKey}
+              NoteContent={NoteContent}
+              setNoteContent={setNoteContent}
             />
           )}
         </div>

@@ -19,6 +19,8 @@ const UpdateConfirmBox = ({
       details: gottenDetails,
       key: uuidv4(), //to give unique id
     });
+
+    // window.location.reload();
   };
 
   const updateNote = () => {
@@ -35,6 +37,7 @@ const UpdateConfirmBox = ({
     });
 
     setNoteContent(filteredNoteContent);
+    // window.location.reload();
   };
 
   return (
