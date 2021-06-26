@@ -17,6 +17,8 @@ const SideBar = ({
   const isOnSideBar = useRef(true);
   const history = useHistory();
 
+  // const NoteContent = localStorage.getItem("noteContent");
+
   useEffect(() => {
     IsReloadingPage && window.location.reload();
   }, [IsReloadingPage]);

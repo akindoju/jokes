@@ -31,24 +31,29 @@ const TakeNotePage = ({
   const noteDate = useRef(new Date().toLocaleString());
 
   const saveNote = () => {
-    isSideBarNoteClicked
-      ? NoteContent.push({
-          title: gottenTitle,
-          date: noteDate.current,
-          details: gottenDetails,
-        })
-      : isNotesPageNoteClicked
-      ? NoteContent.push({
-          title: notesPageGottenTitle,
-          date: noteDate.current,
-          details: notesPageGottenDetails,
-        })
-      : NoteContent.push({
-          title: noteTitle,
-          date: noteDate.current,
-          details: noteDetails,
-          key: uuidv4(), //to give unique id
-        });
+    if (isSideBarNoteClicked) {
+      NoteContent.push({
+        title: gottenTitle,
+        date: noteDate.current,
+        details: gottenDetails,
+      });
+      localStorage.setItem("noteContent", NoteContent);
+    } else if (isNotesPageNoteClicked) {
+      NoteContent.push({
+        title: notesPageGottenTitle,
+        date: noteDate.current,
+        details: notesPageGottenDetails,
+      });
+      localStorage.setItem("noteContent", NoteContent);
+    } else {
+      NoteContent.push({
+        title: noteTitle,
+        date: noteDate.current,
+        details: noteDetails,
+        key: uuidv4(), //to give unique id
+      });
+      localStorage.setItem("noteContent", NoteContent);
+    }
   };
 
   const savingNote = () => {
