@@ -5,13 +5,6 @@ import TakeNotePage from "./pages/takeNotePage/takeNotePage";
 import "./App.css";
 
 function App() {
-  // const [notesPageGottenTitle, setNotesPageGottenTitle] = useState("");
-  // const [notesPageGottenDate, setNotesPageGottenDate] = useState("");
-  // const [notesPageGottenDetails, setNotesPageGottenDetails] = useState("");
-  // const [noteKey, setNoteKey] = useState("");
-  // const [isNotesPageNoteClicked, setIsNotesPageNoteClicked] = useState(false);
-  // const [isDeleteBtnClicked, setIsDeleteBtnClicked] = useState(false);
-
   return (
     <Router>
       <Switch>
@@ -19,30 +12,10 @@ function App() {
           <Homepage />
         </Route>
         <Route path="/notes">
-          <NotesPage
-          // setNotesPageGottenTitle={setNotesPageGottenTitle}
-          // setNotesPageGottenDate={setNotesPageGottenDate}
-          // setNotesPageGottenDetails={setNotesPageGottenDetails}
-          // setIsNotesPageNoteClicked={setIsNotesPageNoteClicked}
-          // isDeleteBtnClicked={isDeleteBtnClicked}
-          // setIsDeleteBtnClicked={setIsDeleteBtnClicked}
-          // noteKey={noteKey}
-          // setNoteKey={setNoteKey}
-          />
+          <NotesPage />
         </Route>
         <Route path="/take-note">
-          <TakeNotePage
-          // notesPageGottenTitle={notesPageGottenTitle}
-          // notesPageGottenDate={notesPageGottenDate}
-          // notesPageGottenDetails={notesPageGottenDetails}
-          // setNotesPageGottenTitle={setNotesPageGottenTitle}
-          // setNotesPageGottenDetails={setNotesPageGottenDetails}
-          // isNotesPageNoteClicked={isNotesPageNoteClicked}
-          // isDeleteBtnClicked={isDeleteBtnClicked}
-          // setIsDeleteBtnClicked={setIsDeleteBtnClicked}
-          // noteKey={noteKey}
-          // setNoteKey={setNoteKey}
-          />
+          <TakeNotePage />
         </Route>
       </Switch>
     </Router>

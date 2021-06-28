@@ -1,23 +1,24 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setIsDeleteBtnClicked,
+  setNoteContent,
+} from "../../redux/app/app.actions";
 import "./DeleteConfirmBox.scss";
 
-const DeleteConfirmBox = ({
-  NoteContent,
-  setNoteContent,
-  setIsDeleteBtnClicked,
-  // noteKey,
-}) => {
+const DeleteConfirmBox = () => {
+  const dispatch = useDispatch();
+  const noteKey = useSelector((state) => state.app.noteKey);
+  const NoteContent = useSelector((state) => state.app.NoteContent);
+
   const deleteNote = () => {
     const filteredNoteContent = NoteContent.filter((note) => {
       return note.key !== noteKey;
     });
 
-    setNoteContent(filteredNoteContent);
+    dispatch(setNoteContent(filteredNoteContent));
 
     window.location.reload();
   };
-
-  const noteKey = useSelector((state) => state.app.noteKey);
 
   return (
     <div className="confirmBox">
@@ -34,7 +35,7 @@ const DeleteConfirmBox = ({
         <button
           className="confirmBox__btn--2"
           onClick={() => {
-            setIsDeleteBtnClicked(false);
+            dispatch(setIsDeleteBtnClicked(false));
           }}
         >
           Cancel

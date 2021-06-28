@@ -35,14 +35,16 @@ export const setNoteKey = (key) => {
   };
 };
 
-export const setIsNotesPageNoteClicked = () => {
+export const setIsNotesPageNoteClicked = (bool) => {
   return {
     type: appTypes.SET_IS_NOTES_PAGE_NOTE_CLICKED,
+    payload: bool,
   };
 };
 
-export const setIsDeleteBtnClicked = () => {
+export const setIsDeleteBtnClicked = (bool) => {
   return {
     type: appTypes.SET_IS_DELETE_BTN_CLICKED,
+    payload: bool,
   };
 };
