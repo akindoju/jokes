@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -33,6 +33,10 @@ const TakeNotePage = () => {
     (state) => state.app.isNotesPageNoteClicked
   );
   const noteKey = useSelector((state) => state.app.noteKey);
+
+  useEffect(() => {
+    console.log(isNotesPageNoteClicked, "takeNotesPage");
+  });
 
   const [noteTitle, setNoteTitle] = useState("");
   const [noteDetails, setNoteDetails] = useState("");

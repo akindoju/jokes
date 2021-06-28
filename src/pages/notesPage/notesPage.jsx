@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -31,6 +31,14 @@ const NotesPage = () => {
   const notesPageFilteredNote = NoteContent.filter((note) =>
     note.title.toLowerCase().includes(searchValue.toLowerCase())
   );
+
+  const isNotesPageNoteClicked = useSelector(
+    (state) => state.app.isNotesPageNoteClicked
+  );
+
+  useEffect(() => {
+    console.log(isNotesPageNoteClicked, "notesPage");
+  });
 
   return (
     <div className="notesPageContainer">

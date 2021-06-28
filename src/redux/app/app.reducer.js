@@ -31,10 +31,10 @@ const appReducer = (state = INITIAL_STATE, action) => {
       return { ...state, noteKey: action.payload };
 
     case appTypes.SET_IS_NOTES_PAGE_NOTE_CLICKED:
-      return { ...state, isNotesPageNoteClicked: true };
+      return { ...state, isNotesPageNoteClicked: action.payload };
 
     case appTypes.SET_IS_DELETE_BTN_CLICKED:
-      return { ...state, isDeleteBtnClicked: true };
+      return { ...state, isDeleteBtnClicked: action.payload };
 
     default:
       return INITIAL_STATE;

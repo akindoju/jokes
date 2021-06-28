@@ -1,11 +1,20 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setIsNotesPageNoteClicked } from "../../redux/app/app.actions";
 import Header from "../../components/Header/Header";
 import "./homepage.scss";
+import { useEffect } from "react";
 
 const Homepage = () => {
   const dispatch = useDispatch();
+
+  const isNotesPageNoteClicked = useSelector(
+    (state) => state.app.isNotesPageNoteClicked
+  );
+
+  useEffect(() => {
+    console.log(isNotesPageNoteClicked, "homepage");
+  });
 
   return (
     <div className="homepageContainer">
