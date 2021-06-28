@@ -5,10 +5,9 @@ import SideBar from "../../components/SideBar/SideBar";
 import DeleteConfirmBox from "../../components/DeleteConfirmBox/DeleteConfirmBox";
 import UpdateConfirmBox from "../../components/UpdateConfirmBox/UpdateConfirmBox";
 import "./takeNotePage.scss";
+import { useSelector } from "react-redux";
 
 const TakeNotePage = ({
-  NoteContent,
-  setNoteContent,
   notesPageGottenTitle,
   notesPageGottenDate,
   notesPageGottenDetails,
@@ -29,6 +28,8 @@ const TakeNotePage = ({
   const [isSideBarNoteClicked, setIsSideBarNoteClicked] = useState(false);
   const [isUpdatingNote, setIsUpdatingNote] = useState(false);
   const noteDate = useRef(new Date().toLocaleString());
+
+  const NoteContent = useSelector((state) => state.app.NoteContent);
 
   const saveNote = () => {
     if (isSideBarNoteClicked) {
@@ -144,7 +145,7 @@ const TakeNotePage = ({
           {isDeleteBtnClicked && (
             <DeleteConfirmBox
               NoteContent={NoteContent}
-              setNoteContent={setNoteContent}
+              // setNoteContent={setNoteContent}
               setIsDeleteBtnClicked={setIsDeleteBtnClicked}
               noteKey={noteKey}
             />
@@ -153,7 +154,7 @@ const TakeNotePage = ({
           {isUpdatingNote && (
             <UpdateConfirmBox
               NoteContent={NoteContent}
-              setNoteContent={setNoteContent}
+              // setNoteContent={setNoteContent}
               gottenTitle={gottenTitle}
               gottenDetails={gottenDetails}
               noteDate={noteDate.current}

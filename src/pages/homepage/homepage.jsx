@@ -1,8 +1,12 @@
-import Header from "../../components/Header/Header";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setIsNotesPageNoteClicked } from "../../redux/app/app.actions";
+import Header from "../../components/Header/Header";
 import "./homepage.scss";
 
-const Homepage = ({ setIsNotesPageNoteClicked }) => {
+const Homepage = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="homepageContainer">
       <Header />
@@ -24,7 +28,7 @@ const Homepage = ({ setIsNotesPageNoteClicked }) => {
         <Link className="homepage__link Link" to="/take-note">
           <svg
             onClick={() => {
-              setIsNotesPageNoteClicked(false);
+              dispatch(setIsNotesPageNoteClicked(false));
             }}
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"

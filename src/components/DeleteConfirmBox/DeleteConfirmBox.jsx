@@ -1,10 +1,11 @@
+import { useSelector } from "react-redux";
 import "./DeleteConfirmBox.scss";
 
 const DeleteConfirmBox = ({
   NoteContent,
   setNoteContent,
   setIsDeleteBtnClicked,
-  noteKey,
+  // noteKey,
 }) => {
   const deleteNote = () => {
     const filteredNoteContent = NoteContent.filter((note) => {
@@ -15,6 +16,9 @@ const DeleteConfirmBox = ({
 
     window.location.reload();
   };
+
+  const noteKey = useSelector((state) => state.app.noteKey);
+
   return (
     <div className="confirmBox">
       <p className="confirmBox__text">Delete Note?</p>
