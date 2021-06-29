@@ -1,12 +1,18 @@
-import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setNotesPageGottenTitle,
   setNotesPageGottenDetails,
   setIsDeleteBtnClicked,
-  setNoteKey,
 } from "../../redux/app/app.actions";
+import {
+  setNoteTitle,
+  setNoteDetails,
+  setGottenTitle,
+  setGottenDetails,
+  setIsReloadingPage,
+  setIsUpdatingNote,
+} from "../../redux/takeNotes/takeNotes.actions";
 import Header from "../../components/Header/Header";
 import SideBar from "../../components/SideBar/SideBar";
 import DeleteConfirmBox from "../../components/DeleteConfirmBox/DeleteConfirmBox";
@@ -17,6 +23,18 @@ const TakeNotePage = () => {
   const dispatch = useDispatch();
 
   const NoteContent = useSelector((state) => state.app.NoteContent);
+  const noteKey = useSelector((state) => state.app.noteKey);
+  const noteTitle = useSelector((state) => state.takeNote.noteTitle);
+  const noteDate = useSelector((state) => state.takeNote.noteDate);
+  const noteDetails = useSelector((state) => state.takeNote.noteDetails);
+  const gottenTitle = useSelector((state) => state.takeNote.gottenTitle);
+  const gottenDate = useSelector((state) => state.takeNote.gottenDate);
+  const gottenDetails = useSelector((state) => state.takeNote.gottenDetails);
+  const isSideBarNoteClicked = useSelector(
+    (state) => state.takeNote.isSideBarNoteClicked
+  );
+  const isUpdatingNote = useSelector((state) => state.takeNote.isUpdatingNote);
+
   const notesPageGottenTitle = useSelector(
     (state) => state.app.notesPageGottenTitle
   );
@@ -32,41 +50,26 @@ const TakeNotePage = () => {
   const isNotesPageNoteClicked = useSelector(
     (state) => state.app.isNotesPageNoteClicked
   );
-  const noteKey = useSelector((state) => state.app.noteKey);
-
-  useEffect(() => {
-    console.log(isNotesPageNoteClicked, "takeNotesPage");
-  });
-
-  const [noteTitle, setNoteTitle] = useState("");
-  const [noteDetails, setNoteDetails] = useState("");
-  const [gottenTitle, setGottenTitle] = useState("");
-  const [gottenDate, setGottenDate] = useState("");
-  const [gottenDetails, setGottenDetails] = useState("");
-  const [isReloadingPage, setIsReloadingPage] = useState(false);
-  const [isSideBarNoteClicked, setIsSideBarNoteClicked] = useState(false);
-  const [isUpdatingNote, setIsUpdatingNote] = useState(false);
-  const noteDate = useRef(new Date().toLocaleString());
 
   const saveNote = () => {
     if (isSideBarNoteClicked) {
       NoteContent.push({
         title: gottenTitle,
-        date: noteDate.current,
+        date: noteDate,
         details: gottenDetails,
       });
       // localStorage.setItem("noteContent", NoteContent);
     } else if (isNotesPageNoteClicked) {
       NoteContent.push({
         title: notesPageGottenTitle,
-        date: noteDate.current,
+        date: noteDate,
         details: notesPageGottenDetails,
       });
       // localStorage.setItem("noteContent", NoteContent);
     } else {
       NoteContent.push({
         title: noteTitle,
-        date: noteDate.current,
+        date: noteDate,
         details: noteDetails,
         key: uuidv4(), //to give unique id
       });
@@ -80,7 +83,7 @@ const TakeNotePage = () => {
     });
 
     if (filteredNoteKeys.includes(true)) {
-      setIsUpdatingNote(true);
+      dispatch(setIsUpdatingNote(true));
     } else {
       saveNote();
     }
@@ -90,15 +93,7 @@ const TakeNotePage = () => {
     <div className="takeNotesPageContainer">
       <Header />
       <div className="takeNotesPage">
-        <SideBar
-          NoteContent={NoteContent}
-          isReloadingPage={isReloadingPage}
-          setIsSideBarNoteClicked={setIsSideBarNoteClicked}
-          setGottenDate={setGottenDate}
-          setGottenDetails={setGottenDetails}
-          setGottenTitle={setGottenTitle}
-          setNoteKey={setNoteKey}
-        />
+        <SideBar />
 
         <div className="takeNotesPage__right">
           <div className="takeNotesPage__right__title">
@@ -117,10 +112,10 @@ const TakeNotePage = () => {
               }
               onChange={({ target }) => {
                 isSideBarNoteClicked
-                  ? setGottenTitle(target.value)
+                  ? dispatch(setGottenTitle(target.value))
                   : isNotesPageNoteClicked
                   ? dispatch(setNotesPageGottenTitle(target.value))
-                  : setNoteTitle(target.value);
+                  : dispatch(setNoteTitle(target.value));
               }}
             />
           </div>
@@ -132,7 +127,7 @@ const TakeNotePage = () => {
                   ? gottenDate
                   : isNotesPageNoteClicked
                   ? notesPageGottenDate
-                  : noteDate.current}
+                  : noteDate}
               </span>
             </p>
             <div className="takeNotesPage__right__sub--buttons">
@@ -149,9 +144,9 @@ const TakeNotePage = () => {
                 className="takeNotesPage__right__sub--buttons--2"
                 onClick={() => {
                   isSideBarNoteClicked ? savingNote() : saveNote();
-                  setIsReloadingPage(true);
+                  dispatch(setIsReloadingPage(true));
                   setTimeout(() => {
-                    setIsReloadingPage(false);
+                    dispatch(setIsReloadingPage(false));
                   }, 100);
                 }}
               >
@@ -161,20 +156,7 @@ const TakeNotePage = () => {
           </div>
           {isDeleteBtnClicked && <DeleteConfirmBox />}
 
-          {isUpdatingNote && (
-            <UpdateConfirmBox
-              NoteContent={NoteContent}
-              // setNoteContent={setNoteContent}
-              gottenTitle={gottenTitle}
-              gottenDetails={gottenDetails}
-              noteDate={noteDate.current}
-              setIsUpdatingNote={setIsUpdatingNote}
-              saveNote={saveNote}
-              noteKey={noteKey}
-              noteTitle={noteTitle}
-              noteDetails={noteDetails}
-            />
-          )}
+          {isUpdatingNote && <UpdateConfirmBox />}
           <textarea
             value={
               isSideBarNoteClicked
@@ -185,10 +167,10 @@ const TakeNotePage = () => {
             }
             onChange={({ target }) => {
               isSideBarNoteClicked
-                ? setGottenDetails(target.value)
+                ? dispatch(setGottenDetails(target.value))
                 : isNotesPageNoteClicked
                 ? dispatch(setNotesPageGottenDetails(target.value))
-                : setNoteDetails(target.value);
+                : dispatch(setNoteDetails(target.value));
             }}
           />
         </div>

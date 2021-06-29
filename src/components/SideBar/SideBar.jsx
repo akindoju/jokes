@@ -1,27 +1,31 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setGottenTitle,
+  setGottenDate,
+  setGottenDetails,
+  setIsSideBarNoteClicked,
+} from "../../redux/takeNotes/takeNotes.actions";
+import { setNoteKey } from "../../redux/app/app.actions";
+import { useHistory } from "react-router";
 import Note from "../Note/Note";
 import SearchBar from "../SearchBar/SearchBar";
-import { useHistory } from "react-router";
 import "./SideBar.scss";
 
-const SideBar = ({
-  NoteContent,
-  IsReloadingPage,
-  setIsSideBarNoteClicked,
-  setGottenDetails,
-  setGottenDate,
-  setGottenTitle,
-  setNoteKey,
-}) => {
+const SideBar = () => {
+  const NoteContent = useSelector((state) => state.app.NoteContent);
+  // const isReloadingPage = useSelector(
+  //   (state) => state.takeNote.isReloadingPage
+  // );
+
   const [searchValue, setSearchValue] = useState("");
   const isOnSideBar = useRef(true);
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  // const NoteContent = localStorage.getItem("noteContent");
-
-  useEffect(() => {
-    IsReloadingPage && window.location.reload();
-  }, [IsReloadingPage]);
+  // useEffect(() => {
+  //   isReloadingPage && window.location.reload();
+  // }, [isReloadingPage]);
 
   const sideBarFilteredNotes = NoteContent.filter((note) =>
     note.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -57,11 +61,11 @@ const SideBar = ({
                 key={note.key}
                 className="sideBarNoteContainer"
                 onClick={() => {
-                  setNoteKey(note.key);
-                  setIsSideBarNoteClicked(true);
-                  setGottenTitle(note.title);
-                  setGottenDate(note.date);
-                  setGottenDetails(note.details);
+                  dispatch(setNoteKey(note.key));
+                  dispatch(setIsSideBarNoteClicked(true));
+                  dispatch(setGottenTitle(note.title));
+                  dispatch(setGottenDate(note.date));
+                  dispatch(setGottenDetails(note.details));
                 }}
               >
                 <Note
@@ -80,11 +84,11 @@ const SideBar = ({
                 key={note.key}
                 className="sideBarNoteContainer"
                 onClick={() => {
-                  setNoteKey(note.key);
-                  setIsSideBarNoteClicked(true);
-                  setGottenTitle(note.title);
-                  setGottenDate(note.date);
-                  setGottenDetails(note.details);
+                  dispatch(setNoteKey(note.key));
+                  dispatch(setIsSideBarNoteClicked(true));
+                  dispatch(setGottenTitle(note.title));
+                  dispatch(setGottenDate(note.date));
+                  dispatch(setGottenDetails(note.details));
                 }}
               >
                 <Note

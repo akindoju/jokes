@@ -1,17 +1,18 @@
-import "./UpdateConfirmBox.scss";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import { setNoteContent } from "../../redux/app/app.actions";
+import { setIsUpdatingNote } from "../../redux/takeNotes/takeNotes.actions";
+import "./UpdateConfirmBox.scss";
 
-const UpdateConfirmBox = ({
-  setIsUpdatingNote,
-  NoteContent,
-  setNoteContent,
-  gottenTitle,
-  gottenDetails,
-  noteDate,
-  noteKey,
-  noteTitle,
-  noteDetails,
-}) => {
+const UpdateConfirmBox = () => {
+  const NoteContent = useSelector((state) => state.app.NoteContent);
+  const noteDate = useSelector((state) => state.takeNote.noteDate);
+  const noteKey = useSelector((state) => state.app.noteKey);
+  const gottenTitle = useSelector((state) => state.takeNote.gottenTitle);
+  const gottenDetails = useSelector((state) => state.takeNote.gottenDetails);
+
+  const dispatch = useDispatch();
+
   const saveNewNote = () => {
     NoteContent.push({
       title: gottenTitle,
@@ -36,7 +37,7 @@ const UpdateConfirmBox = ({
       key: uuidv4(), //to give unique id
     });
 
-    setNoteContent(filteredNoteContent);
+    dispatch(setNoteContent(filteredNoteContent));
     // window.location.reload();
   };
 
@@ -47,7 +48,7 @@ const UpdateConfirmBox = ({
         <button
           className="updateBtn updateBtn--1"
           onClick={() => {
-            setIsUpdatingNote(false);
+            dispatch(setIsUpdatingNote(false));
             updateNote();
           }}
         >
@@ -57,7 +58,7 @@ const UpdateConfirmBox = ({
         <button
           className="updateBtn updateBtn--2"
           onClick={() => {
-            setIsUpdatingNote(false);
+            dispatch(setIsUpdatingNote(false));
             saveNewNote();
           }}
         >
@@ -67,7 +68,7 @@ const UpdateConfirmBox = ({
         <button
           className="updateBtn updateBtn--3"
           onClick={() => {
-            setIsUpdatingNote(false);
+            dispatch(setIsUpdatingNote(false));
           }}
         >
           Cancel
