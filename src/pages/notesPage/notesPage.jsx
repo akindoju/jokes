@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -21,11 +21,11 @@ const NotesPage = () => {
   const dispatch = useDispatch();
 
   const NoteContent = useSelector((state) => state.app.NoteContent);
+  const searchValue = useSelector((state) => state.notesPage.searchValue);
   const isDeleteBtnClicked = useSelector(
     (state) => state.app.isDeleteBtnClicked
   );
 
-  const [searchValue, setSearchValue] = useState("");
   const isOnNotesPage = useRef(true);
 
   const notesPageFilteredNote = NoteContent.filter((note) =>
@@ -71,11 +71,7 @@ const NotesPage = () => {
         <h1 className="notesPage__title">Notes</h1>
 
         <div className="notesPage__note">
-          <SearchBar
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-            isOnNotesPage={isOnNotesPage.current}
-          />
+          <SearchBar isOnNotesPage={isOnNotesPage.current} />
           {NoteContent.length > 0 ? (
             searchValue === "" ? (
               NoteContent.map((note) => {

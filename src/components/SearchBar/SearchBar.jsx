@@ -1,11 +1,11 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchValue } from "../../redux/notesPage/notesPage.actions";
 import "./SearchBar.scss";
 
-const SearchBar = ({
-  searchValue,
-  setSearchValue,
-  isOnSideBar,
-  isOnNotesPage,
-}) => {
+const SearchBar = ({ isOnSideBar, isOnNotesPage }) => {
+  const searchValue = useSelector((state) => state.notesPage.searchValue);
+  const dispatch = useDispatch();
+
   return (
     <input
       type="text"
@@ -16,7 +16,7 @@ const SearchBar = ({
       }
       placeholder="Search Note by title"
       onChange={({ target }) => {
-        setSearchValue(target.value);
+        dispatch(setSearchValue(target.value));
       }}
     />
   );

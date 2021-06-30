@@ -34,7 +34,6 @@ const TakeNotePage = () => {
     (state) => state.takeNote.isSideBarNoteClicked
   );
   const isUpdatingNote = useSelector((state) => state.takeNote.isUpdatingNote);
-
   const notesPageGottenTitle = useSelector(
     (state) => state.app.notesPageGottenTitle
   );

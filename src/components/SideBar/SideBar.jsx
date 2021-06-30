@@ -1,5 +1,6 @@
-import { useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import {
   setGottenTitle,
   setGottenDate,
@@ -7,25 +8,24 @@ import {
   setIsSideBarNoteClicked,
 } from "../../redux/takeNotes/takeNotes.actions";
 import { setNoteKey } from "../../redux/app/app.actions";
-import { useHistory } from "react-router";
 import Note from "../Note/Note";
 import SearchBar from "../SearchBar/SearchBar";
 import "./SideBar.scss";
 
 const SideBar = () => {
-  const NoteContent = useSelector((state) => state.app.NoteContent);
-  // const isReloadingPage = useSelector(
-  //   (state) => state.takeNote.isReloadingPage
-  // );
-
-  const [searchValue, setSearchValue] = useState("");
   const isOnSideBar = useRef(true);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   isReloadingPage && window.location.reload();
-  // }, [isReloadingPage]);
+  const NoteContent = useSelector((state) => state.app.NoteContent);
+  const searchValue = useSelector((state) => state.notesPage.searchValue);
+  const isReloadingPage = useSelector(
+    (state) => state.takeNote.isReloadingPage
+  );
+
+  useEffect(() => {
+    return isReloadingPage;
+  }, [isReloadingPage]);
 
   const sideBarFilteredNotes = NoteContent.filter((note) =>
     note.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -48,11 +48,7 @@ const SideBar = () => {
         <title>arrow-left2</title>
         <path d="M12.586 27.414l-10-10c-0.781-0.781-0.781-2.047 0-2.828l10-10c0.781-0.781 2.047-0.781 2.828 0s0.781 2.047 0 2.828l-6.586 6.586h19.172c1.105 0 2 0.895 2 2s-0.895 2-2 2h-19.172l6.586 6.586c0.39 0.39 0.586 0.902 0.586 1.414s-0.195 1.024-0.586 1.414c-0.781 0.781-2.047 0.781-2.828 0z"></path>
       </svg>
-      <SearchBar
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-        isOnSideBar={isOnSideBar.current}
-      />
+      <SearchBar isOnSideBar={isOnSideBar.current} />
       {NoteContent.length > 0 ? (
         searchValue === "" ? (
           NoteContent.map((note) => {
