@@ -19,22 +19,40 @@ const appReducer = (state = INITIAL_STATE, action) => {
       };
 
     case appTypes.SET_NOTES_PAGE_GOTTEN_TITLE:
-      return { ...state, notesPageGottenTitle: action.payload };
+      return {
+        ...state,
+        notesPageGottenTitle: action.payload,
+      };
 
     case appTypes.SET_NOTES_PAGE_GOTTEN_DATE:
-      return { ...state, notesPageGottenDate: action.payload };
+      return {
+        ...state,
+        notesPageGottenDate: action.payload,
+      };
 
     case appTypes.SET_NOTES_PAGE_GOTTEN_DETAILS:
-      return { ...state, notesPageGottenDetails: action.payload };
+      return {
+        ...state,
+        notesPageGottenDetails: action.payload,
+      };
 
     case appTypes.SET_NOTE_KEY:
-      return { ...state, noteKey: action.payload };
+      return {
+        ...state,
+        noteKey: action.payload,
+      };
 
     case appTypes.SET_IS_NOTES_PAGE_NOTE_CLICKED:
-      return { ...state, isNotesPageNoteClicked: action.payload };
+      return {
+        ...state,
+        isNotesPageNoteClicked: action.payload,
+      };
 
     case appTypes.SET_IS_DELETE_BTN_CLICKED:
-      return { ...state, isDeleteBtnClicked: action.payload };
+      return {
+        ...state,
+        isDeleteBtnClicked: action.payload,
+      };
 
     default:
       return INITIAL_STATE;

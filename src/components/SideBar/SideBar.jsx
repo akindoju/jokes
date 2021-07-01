@@ -23,6 +23,7 @@ const SideBar = () => {
     (state) => state.takeNote.isReloadingPage
   );
 
+  //causing the rerender of the page
   useEffect(() => {
     return isReloadingPage;
   }, [isReloadingPage]);
@@ -57,11 +58,11 @@ const SideBar = () => {
                 key={note.key}
                 className="sideBarNoteContainer"
                 onClick={() => {
-                  dispatch(setNoteKey(note.key));
-                  dispatch(setIsSideBarNoteClicked(true));
                   dispatch(setGottenTitle(note.title));
                   dispatch(setGottenDate(note.date));
                   dispatch(setGottenDetails(note.details));
+                  dispatch(setIsSideBarNoteClicked(true));
+                  dispatch(setNoteKey(note.key));
                 }}
               >
                 <Note
@@ -80,11 +81,11 @@ const SideBar = () => {
                 key={note.key}
                 className="sideBarNoteContainer"
                 onClick={() => {
-                  dispatch(setNoteKey(note.key));
-                  dispatch(setIsSideBarNoteClicked(true));
                   dispatch(setGottenTitle(note.title));
                   dispatch(setGottenDate(note.date));
                   dispatch(setGottenDetails(note.details));
+                  dispatch(setIsSideBarNoteClicked(true));
+                  dispatch(setNoteKey(note.key));
                 }}
               >
                 <Note

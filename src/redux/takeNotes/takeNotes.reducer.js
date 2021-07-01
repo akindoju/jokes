@@ -1,3 +1,4 @@
+import appTypes from "../app/app.types";
 import takeNotesTypes from "./takeNotes.types";
 
 const INITIAL_STATE = {
@@ -37,6 +38,16 @@ const takeNotesReducer = (state = INITIAL_STATE, action) => {
 
     case takeNotesTypes.SET_IS_UPDATING_NOTE:
       return { ...state, isUpdatingNote: action.payload };
+
+    case appTypes.SET_IS_DELETE_BTN_CLICKED:
+      return {
+        ...state,
+      };
+
+    case appTypes.SET_NOTE_KEY:
+      return {
+        ...state,
+      };
 
     default:
       return INITIAL_STATE;

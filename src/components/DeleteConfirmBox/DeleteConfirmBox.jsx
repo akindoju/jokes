@@ -16,8 +16,9 @@ const DeleteConfirmBox = () => {
     });
 
     dispatch(setNoteContent(filteredNoteContent));
+    dispatch(setIsDeleteBtnClicked(false));
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (

@@ -98,7 +98,7 @@ const NotesPage = () => {
                     <svg
                       onClick={() => {
                         dispatch(setIsDeleteBtnClicked(true));
-                        setNoteKey(note.key);
+                        dispatch(setNoteKey(note.key));
                       }}
                       className="notesPageNoteContainer__svg"
                       version="1.1"

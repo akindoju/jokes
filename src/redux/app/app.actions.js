@@ -7,38 +7,38 @@ export const setNoteContent = (notes) => {
   };
 };
 
-export const setNotesPageGottenTitle = (title) => {
+export const setNotesPageGottenTitle = (notesPageGottenTitle) => {
   return {
     type: appTypes.SET_NOTES_PAGE_GOTTEN_TITLE,
-    payload: title,
+    payload: notesPageGottenTitle,
   };
 };
 
-export const setNotesPageGottenDate = (date) => {
+export const setNotesPageGottenDate = (notesPageGottenDate) => {
   return {
     type: appTypes.SET_NOTES_PAGE_GOTTEN_DATE,
-    payload: date,
+    payload: notesPageGottenDate,
   };
 };
 
-export const setNotesPageGottenDetails = (details) => {
+export const setNotesPageGottenDetails = (notesPageGottenDetails) => {
   return {
     type: appTypes.SET_NOTES_PAGE_GOTTEN_DETAILS,
-    payload: details,
+    payload: notesPageGottenDetails,
   };
 };
 
-export const setNoteKey = (key) => {
+export const setNoteKey = (noteKey) => {
   return {
-    type: appTypes.SET_NOTES_PAGE_GOTTEN_DETAILS,
-    payload: key,
+    type: appTypes.SET_NOTE_KEY,
+    payload: noteKey,
   };
 };
 
-export const setIsNotesPageNoteClicked = (bool) => {
+export const setIsNotesPageNoteClicked = (isNotesPageNoteClicked) => {
   return {
     type: appTypes.SET_IS_NOTES_PAGE_NOTE_CLICKED,
-    payload: bool,
+    payload: isNotesPageNoteClicked,
   };
 };
 

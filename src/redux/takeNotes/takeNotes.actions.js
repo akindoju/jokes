@@ -30,7 +30,7 @@ export const setGottenDate = (gottenDate) => {
 
 export const setGottenDetails = (gottenDetails) => {
   return {
-    type: takeNotesTypes.SET_GOTTEN_TITLE,
+    type: takeNotesTypes.SET_GOTTEN_DETAILS,
     payload: gottenDetails,
   };
 };
