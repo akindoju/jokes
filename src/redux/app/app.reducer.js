@@ -1,3 +1,4 @@
+import takeNotesTypes from "../takeNotes/takeNotes.types";
 import appTypes from "./app.types";
 
 const INITIAL_STATE = {
@@ -53,6 +54,9 @@ const appReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isDeleteBtnClicked: action.payload,
       };
+
+    case takeNotesTypes.SET_IS_SIDEBAR_NOTE_CLICKED:
+      return { ...state };
 
     default:
       return INITIAL_STATE;

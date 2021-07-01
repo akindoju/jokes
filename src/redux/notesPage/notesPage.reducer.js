@@ -1,3 +1,4 @@
+import appTypes from "../app/app.types";
 import notesPageTypes from "./notesPage.types";
 
 const INITIAL_STATE = {
@@ -10,6 +11,16 @@ const notesPageReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         searchValue: action.payload,
+      };
+
+    case appTypes.SET_IS_DELETE_BTN_CLICKED:
+      return {
+        ...state,
+      };
+
+    case appTypes.SET_NOTE_KEY:
+      return {
+        ...state,
       };
 
     default:
