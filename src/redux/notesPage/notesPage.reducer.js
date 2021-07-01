@@ -1,4 +1,5 @@
 import appTypes from "../app/app.types";
+import takeNotesTypes from "../takeNotes/takeNotes.types";
 import notesPageTypes from "./notesPage.types";
 
 const INITIAL_STATE = {
@@ -22,6 +23,24 @@ const notesPageReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
       };
+
+    case takeNotesTypes.SET_IS_SIDEBAR_NOTE_CLICKED:
+      return { ...state };
+
+    case takeNotesTypes.SET_GOTTEN_TITLE:
+      return { ...state };
+
+    case takeNotesTypes.SET_GOTTEN_DATE:
+      return { ...state };
+
+    case takeNotesTypes.SET_GOTTEN_DETAILS:
+      return { ...state };
+
+    case takeNotesTypes.SET_IS_UPDATING_NOTE:
+      return { ...state };
+
+    case takeNotesTypes.SET_IS_RELOADING_PAGE:
+      return { ...state };
 
     default:
       return INITIAL_STATE;

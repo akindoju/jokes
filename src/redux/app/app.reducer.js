@@ -1,3 +1,4 @@
+import notesPageTypes from "../notesPage/notesPage.types";
 import takeNotesTypes from "../takeNotes/takeNotes.types";
 import appTypes from "./app.types";
 
@@ -69,6 +70,17 @@ const appReducer = (state = INITIAL_STATE, action) => {
 
     case takeNotesTypes.SET_GOTTEN_DETAILS:
       return { ...state };
+
+    case takeNotesTypes.SET_NOTE_TITLE:
+      return { ...state };
+
+    case takeNotesTypes.SET_NOTES_DETAILS:
+      return { ...state };
+
+    case notesPageTypes.SET_SEARCH_VALUE:
+      return {
+        ...state,
+      };
 
     default:
       return INITIAL_STATE;
