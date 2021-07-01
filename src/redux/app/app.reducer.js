@@ -58,6 +58,18 @@ const appReducer = (state = INITIAL_STATE, action) => {
     case takeNotesTypes.SET_IS_SIDEBAR_NOTE_CLICKED:
       return { ...state };
 
+    case takeNotesTypes.SET_IS_RELOADING_PAGE:
+      return { ...state };
+
+    case takeNotesTypes.SET_GOTTEN_TITLE:
+      return { ...state };
+
+    case takeNotesTypes.SET_GOTTEN_DATE:
+      return { ...state };
+
+    case takeNotesTypes.SET_GOTTEN_DETAILS:
+      return { ...state };
+
     default:
       return INITIAL_STATE;
   }

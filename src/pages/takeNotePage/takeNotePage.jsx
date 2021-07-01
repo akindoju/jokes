@@ -88,6 +88,10 @@ const TakeNotePage = () => {
     }
   };
 
+  const isInvalid =
+    noteTitle.length < 1 &&
+    (gottenTitle.length > 1 || notesPageGottenTitle.length > 1);
+
   return (
     <div className="takeNotesPageContainer">
       <Header />
@@ -135,6 +139,7 @@ const TakeNotePage = () => {
                 onClick={() => {
                   dispatch(setIsDeleteBtnClicked(true));
                 }}
+                disabled={isInvalid}
               >
                 Delete
               </button>
@@ -148,6 +153,7 @@ const TakeNotePage = () => {
                     dispatch(setIsReloadingPage(false));
                   }, 100);
                 }}
+                disabled={isInvalid}
               >
                 Save
               </button>
