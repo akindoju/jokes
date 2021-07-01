@@ -82,6 +82,9 @@ const appReducer = (state = INITIAL_STATE, action) => {
         ...state,
       };
 
+    case takeNotesTypes.SET_IS_UPDATING_NOTE:
+      return { ...state };
+
     default:
       return INITIAL_STATE;
   }

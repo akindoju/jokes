@@ -55,6 +55,11 @@ const takeNotesReducer = (state = INITIAL_STATE, action) => {
         ...state,
       };
 
+    case appTypes.SET_NOTE_CONTENT:
+      return {
+        ...state,
+      };
+
     default:
       return INITIAL_STATE;
   }

@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { setNoteContent } from "../../redux/app/app.actions";
-import { setIsUpdatingNote } from "../../redux/takeNotes/takeNotes.actions";
+import {
+  setGottenDate,
+  setGottenDetails,
+  setIsUpdatingNote,
+  setGottenTitle,
+} from "../../redux/takeNotes/takeNotes.actions";
 import "./UpdateConfirmBox.scss";
 
 const UpdateConfirmBox = () => {
@@ -24,6 +29,8 @@ const UpdateConfirmBox = () => {
     // window.location.reload();
   };
 
+  console.log(noteKey, "updateconfirmbox");
+
   const updateNote = () => {
     const filteredNoteContent = NoteContent.filter((note) => {
       return note.key !== noteKey;
@@ -38,7 +45,9 @@ const UpdateConfirmBox = () => {
     });
 
     dispatch(setNoteContent(filteredNoteContent));
-    // window.location.reload();
+    dispatch(setGottenTitle(""));
+    dispatch(setGottenDate(new Date().toLocaleString()));
+    dispatch(setGottenDetails(""));
   };
 
   return (
