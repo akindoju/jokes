@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setIsDeleteBtnClicked,
   setNoteContent,
+  setNotesPageGottenDate,
+  setNotesPageGottenDetails,
+  setNotesPageGottenTitle,
 } from "../../redux/app/app.actions";
 import "./DeleteConfirmBox.scss";
 
@@ -17,8 +20,9 @@ const DeleteConfirmBox = () => {
 
     dispatch(setNoteContent(filteredNoteContent));
     dispatch(setIsDeleteBtnClicked(false));
-
-    // window.location.reload();
+    dispatch(setNotesPageGottenTitle(""));
+    dispatch(setNotesPageGottenDate(new Date().toLocaleString()));
+    dispatch(setNotesPageGottenDetails(""));
   };
 
   return (

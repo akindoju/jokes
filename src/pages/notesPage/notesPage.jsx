@@ -55,6 +55,11 @@ const NotesPage = () => {
         {NoteContent.length > 0 && (
           <Link className="notesPage__addBtn Link" to="/take-note">
             <svg
+              onClick={() => {
+                dispatch(setNotesPageGottenTitle(""));
+                dispatch(setNotesPageGottenDate(new Date().toLocaleString()));
+                dispatch(setNotesPageGottenDetails(""));
+              }}
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -163,6 +168,13 @@ const NotesPage = () => {
               <div className="takeNotesBtn">
                 <Link className="homepage__link Link" to="/take-note">
                   <svg
+                    onClick={() => {
+                      dispatch(setNotesPageGottenTitle(""));
+                      dispatch(
+                        setNotesPageGottenDate(new Date().toLocaleString())
+                      );
+                      dispatch(setNotesPageGottenDetails(""));
+                    }}
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
