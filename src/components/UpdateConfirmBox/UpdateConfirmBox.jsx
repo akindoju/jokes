@@ -51,6 +51,13 @@ const UpdateConfirmBox = () => {
         key: uuidv4(), //to give unique id
       });
     }
+
+    dispatch(setGottenTitle(""));
+    dispatch(setGottenDate(new Date().toLocaleString()));
+    dispatch(setGottenDetails(""));
+    dispatch(setNotesPageGottenTitle(""));
+    dispatch(setNotesPageGottenDate(new Date().toLocaleString()));
+    dispatch(setNotesPageGottenDetails(""));
   };
 
   const updateNote = () => {

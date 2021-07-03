@@ -71,6 +71,9 @@ const TakeNotePage = () => {
         key: uuidv4(), //to give unique id
       });
     }
+
+    dispatch(setNoteDetails(""));
+    dispatch(setNoteTitle(""));
   };
 
   const savingNote = () => {
