@@ -66,6 +66,7 @@ const SideBar = () => {
                 }}
               >
                 <Note
+                  key={note.key}
                   title={note.title}
                   date={note.date}
                   isOnSideBar={isOnSideBar.current}
@@ -89,6 +90,7 @@ const SideBar = () => {
                 }}
               >
                 <Note
+                  key={note.key}
                   title={note.title}
                   date={note.date}
                   isOnSideBar={isOnSideBar.current}

@@ -1,16 +1,17 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
+// import { PersistGate } from "redux-persist/integration/react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { store, persistor } from "./redux/store";
+import { store } from "./redux/store";
+// import { store, persistor } from "./redux/store";
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <App />
-    </PersistGate>
+    {/* <PersistGate persistor={persistor}> */}
+    <App />
+    {/* </PersistGate> */}
   </Provider>,
   document.getElementById("root")
 );

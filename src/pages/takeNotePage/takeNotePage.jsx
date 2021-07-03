@@ -41,7 +41,7 @@ const TakeNotePage = () => {
     (state) => state.app.notesPageGottenDate
   );
   const notesPageGottenDetails = useSelector(
-    (state) => state.app.setNotesPageGottenDetails
+    (state) => state.app.notesPageGottenDetails
   );
   const isDeleteBtnClicked = useSelector(
     (state) => state.app.isDeleteBtnClicked
@@ -57,14 +57,12 @@ const TakeNotePage = () => {
         date: noteDate,
         details: gottenDetails,
       });
-      // localStorage.setItem("noteContent", NoteContent);
     } else if (isNotesPageNoteClicked) {
       NoteContent.push({
         title: notesPageGottenTitle,
         date: noteDate,
         details: notesPageGottenDetails,
       });
-      // localStorage.setItem("noteContent", NoteContent);
     } else {
       NoteContent.push({
         title: noteTitle,
@@ -72,11 +70,11 @@ const TakeNotePage = () => {
         details: noteDetails,
         key: uuidv4(), //to give unique id
       });
-      // localStorage.setItem("noteContent", NoteContent);
     }
   };
 
   const savingNote = () => {
+    //filtering sideBar notes
     const filteredNoteKeys = NoteContent.map((note) => {
       return note.key === noteKey;
     });
@@ -91,6 +89,12 @@ const TakeNotePage = () => {
   const disableDelBtn =
     gottenTitle.length < 1 && notesPageGottenTitle.length < 1;
 
+  const disableSaveBtn =
+    noteTitle.length < 1 &&
+    gottenTitle.length < 1 &&
+    notesPageGottenTitle.length < 1 &&
+    !(notesPageGottenTitle || gottenTitle);
+
   return (
     <div className="takeNotesPageContainer">
       <Header />
@@ -103,7 +107,6 @@ const TakeNotePage = () => {
             <input
               autoComplete="off"
               type="text"
-              id="title"
               autoFocus
               value={
                 isSideBarNoteClicked
@@ -134,7 +137,11 @@ const TakeNotePage = () => {
             </p>
             <div className="takeNotesPage__right__sub--buttons">
               <button
-                className="takeNotesPage__right__sub--buttons--1"
+                className={
+                  disableDelBtn
+                    ? "takeNotesPage__right__sub--buttons--1 opacity"
+                    : "takeNotesPage__right__sub--buttons--1"
+                }
                 onClick={() => {
                   dispatch(setIsDeleteBtnClicked(true));
                 }}
@@ -144,15 +151,21 @@ const TakeNotePage = () => {
               </button>
 
               <button
-                className="takeNotesPage__right__sub--buttons--2"
+                className={
+                  disableSaveBtn
+                    ? "takeNotesPage__right__sub--buttons--2 opacity"
+                    : "takeNotesPage__right__sub--buttons--2"
+                }
                 onClick={() => {
-                  isSideBarNoteClicked ? savingNote() : saveNote();
+                  isSideBarNoteClicked || isNotesPageNoteClicked
+                    ? savingNote()
+                    : saveNote();
                   dispatch(setIsReloadingPage(true));
                   setTimeout(() => {
                     dispatch(setIsReloadingPage(false));
                   }, 100);
                 }}
-                // disabled={isInvalid}
+                disabled={disableSaveBtn}
               >
                 Save
               </button>
@@ -170,6 +183,7 @@ const TakeNotePage = () => {
                 : noteDetails
             }
             onChange={({ target }) => {
+              console.log(notesPageGottenDate, "motesPageGottenDetails");
               isSideBarNoteClicked
                 ? dispatch(setGottenDetails(target.value))
                 : isNotesPageNoteClicked

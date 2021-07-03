@@ -59,6 +59,7 @@ const NotesPage = () => {
                 dispatch(setNotesPageGottenTitle(""));
                 dispatch(setNotesPageGottenDate(new Date().toLocaleString()));
                 dispatch(setNotesPageGottenDetails(""));
+                dispatch(setIsNotesPageNoteClicked(false));
               }}
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
@@ -83,14 +84,13 @@ const NotesPage = () => {
                 return (
                   <div className="notesPageNoteContainer" key={note.key}>
                     <div
-                      key={note.key}
                       className="notesPageNoteContainer__note"
                       onClick={() => {
-                        dispatch(setNoteKey(note.key));
-                        dispatch(setNotesPageGottenDate(note.date));
                         dispatch(setNotesPageGottenDetails(note.details));
                         dispatch(setNotesPageGottenTitle(note.title));
+                        dispatch(setNotesPageGottenDate(note.date));
                         dispatch(setIsNotesPageNoteClicked(true));
+                        dispatch(setNoteKey(note.key));
                         history.push("/take-note");
                       }}
                     >
@@ -124,7 +124,6 @@ const NotesPage = () => {
                 return (
                   <div className="notesPageNoteContainer" key={note.key}>
                     <div
-                      key={note.key}
                       className="notesPageNoteContainer__note"
                       onClick={() => {
                         dispatch(setNoteKey(note.key));
@@ -174,6 +173,7 @@ const NotesPage = () => {
                         setNotesPageGottenDate(new Date().toLocaleString())
                       );
                       dispatch(setNotesPageGottenDetails(""));
+                      dispatch(setIsNotesPageNoteClicked(false));
                     }}
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"

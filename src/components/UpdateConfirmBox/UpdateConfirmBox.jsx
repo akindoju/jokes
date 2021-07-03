@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { setNoteContent } from "../../redux/app/app.actions";
+import {
+  setNoteContent,
+  setNotesPageGottenDate,
+  setNotesPageGottenDetails,
+  setNotesPageGottenTitle,
+} from "../../redux/app/app.actions";
 import {
   setGottenDate,
   setGottenDetails,
@@ -15,21 +20,38 @@ const UpdateConfirmBox = () => {
   const noteKey = useSelector((state) => state.app.noteKey);
   const gottenTitle = useSelector((state) => state.takeNote.gottenTitle);
   const gottenDetails = useSelector((state) => state.takeNote.gottenDetails);
+  const isSideBarNoteClicked = useSelector(
+    (state) => state.takeNote.isSideBarNoteClicked
+  );
+  const isNotesPageNoteClicked = useSelector(
+    (state) => state.app.isNotesPageNoteClicked
+  );
+  const notesPageGottenTitle = useSelector(
+    (state) => state.app.notesPageGottenTitle
+  );
+  const notesPageGottenDetails = useSelector(
+    (state) => state.app.notesPageGottenDetails
+  );
 
   const dispatch = useDispatch();
 
   const saveNewNote = () => {
-    NoteContent.push({
-      title: gottenTitle,
-      date: noteDate,
-      details: gottenDetails,
-      key: uuidv4(), //to give unique id
-    });
-
-    // window.location.reload();
+    if (isSideBarNoteClicked) {
+      NoteContent.push({
+        title: gottenTitle,
+        date: noteDate,
+        details: gottenDetails,
+        key: uuidv4(), //to give unique id
+      });
+    } else if (isNotesPageNoteClicked) {
+      NoteContent.push({
+        title: notesPageGottenTitle,
+        date: noteDate,
+        details: notesPageGottenDetails,
+        key: uuidv4(), //to give unique id
+      });
+    }
   };
-
-  console.log(noteKey, "updateconfirmbox");
 
   const updateNote = () => {
     const filteredNoteContent = NoteContent.filter((note) => {
@@ -37,17 +59,29 @@ const UpdateConfirmBox = () => {
     });
 
     //push overwriting note to filteredArray
-    filteredNoteContent.push({
-      title: gottenTitle,
-      date: noteDate,
-      details: gottenDetails,
-      key: uuidv4(), //to give unique id
-    });
+    if (isSideBarNoteClicked) {
+      filteredNoteContent.push({
+        title: gottenTitle,
+        date: noteDate,
+        details: gottenDetails,
+        key: uuidv4(), //to give unique id
+      });
+    } else if (isNotesPageNoteClicked) {
+      filteredNoteContent.push({
+        title: notesPageGottenTitle,
+        date: noteDate,
+        details: notesPageGottenDetails,
+        key: uuidv4(), //to give unique id
+      });
+    }
 
     dispatch(setNoteContent(filteredNoteContent));
     dispatch(setGottenTitle(""));
     dispatch(setGottenDate(new Date().toLocaleString()));
     dispatch(setGottenDetails(""));
+    dispatch(setNotesPageGottenTitle(""));
+    dispatch(setNotesPageGottenDate(new Date().toLocaleString()));
+    dispatch(setNotesPageGottenDetails(""));
   };
 
   return (
