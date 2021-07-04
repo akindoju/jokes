@@ -11,6 +11,10 @@
   align-items: center;
   height: 100%;
 
+  @media only screen and (max-width: 425px) {
+    flex-direction: column;
+  }
+
   &__link {
     display: flex;
     flex-direction: column;
@@ -33,10 +37,20 @@
 
     &:not(:last-child) {
       margin-right: 8rem;
+
+      @media only screen and (max-width: 425px) {
+        margin-right: 0;
+        margin-bottom: 3rem;
+      }
     }
 
     &:not(:first-child) {
       margin-left: 8rem;
+
+      @media only screen and (max-width: 425px) {
+        margin-left: 0;
+        margin-top: 3rem;
+      }
     }
 
     &:hover,
