@@ -7,13 +7,20 @@
 
 .notesPage {
   height: 100%;
-  position: relative;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 5rem;
+
+    @media only screen and (max-width: 425px) {
+      margin: 0 2rem;
+    }
+  }
 
   &__backBtn {
     cursor: pointer;
-    position: absolute;
-    left: 4.5rem;
-    top: 3.2rem;
     fill: white;
     transition: all 0.2s;
 
@@ -23,28 +30,26 @@
   }
 
   &__addBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s;
+
     svg {
       fill: white;
       width: 4rem;
       height: 4rem;
       cursor: pointer;
-      position: absolute;
-      right: 4.5rem;
-      top: 3.2rem;
-      transition: all 0.2s;
-
-      &:hover {
-        transform: scale(1.2);
-      }
     }
 
     p {
       color: white;
-      position: absolute;
-      right: 4.2rem;
-      top: 7.2rem;
       transition: all 0.2s;
       font-family: "Carter One", cursive;
+    }
+
+    &:hover {
+      transform: scale(1.1);
     }
   }
 
@@ -54,6 +59,10 @@
     font-size: 4rem;
     font-family: "Carter One", cursive;
     margin: 2rem 0;
+
+    @media only screen and (max-width: 425px) {
+      font-size: 3rem;
+    }
   }
 
   &__note {
