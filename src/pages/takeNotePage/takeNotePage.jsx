@@ -18,6 +18,8 @@ import SideBar from "../../components/SideBar/SideBar";
 import DeleteConfirmBox from "../../components/DeleteConfirmBox/DeleteConfirmBox";
 import UpdateConfirmBox from "../../components/UpdateConfirmBox/UpdateConfirmBox";
 import "./takeNotePage.scss";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const TakeNotePage = () => {
   const dispatch = useDispatch();
@@ -98,11 +100,43 @@ const TakeNotePage = () => {
     notesPageGottenTitle.length < 1 &&
     !(notesPageGottenTitle || gottenTitle);
 
+  const useViewport = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      const handleWindowResize = () => setWidth(window.innerWidth);
+      window.addEventListener("resize", handleWindowResize);
+      //remove event listener to avoid memory leak
+      return window.removeEventListener("resize", handleWindowResize);
+    }, []);
+
+    return { width };
+  };
+
+  const { width } = useViewport();
+
+  const breakPoint = 375;
+
   return (
     <div className="takeNotesPageContainer">
       <Header />
+
       <div className="takeNotesPage">
-        <SideBar />
+        {width <= breakPoint ? (
+          <svg
+            className="toggleSidebarBtn"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <title>list</title>
+            <path d="M6.984 6.984h14.016v2.016h-14.016v-2.016zM6.984 17.016v-2.016h14.016v2.016h-14.016zM6.984 12.984v-1.969h14.016v1.969h-14.016zM3 9v-2.016h2.016v2.016h-2.016zM3 17.016v-2.016h2.016v2.016h-2.016zM3 12.984v-1.969h2.016v1.969h-2.016z"></path>
+          </svg>
+        ) : (
+          <SideBar />
+        )}
 
         <div className="takeNotesPage__right">
           <div className="takeNotesPage__right__title">
