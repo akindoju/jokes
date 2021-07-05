@@ -112,7 +112,7 @@ const UpdateConfirmBox = () => {
             saveNewNote();
           }}
         >
-          Save New
+          New
         </button>
 
         <button
