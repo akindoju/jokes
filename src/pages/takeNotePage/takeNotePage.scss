@@ -12,6 +12,11 @@
     align-items: center;
     margin: 0 auto;
 
+    @media only screen and (max-width: 425px) {
+      margin: 0;
+      width: 100%;
+    }
+
     &__title {
       display: flex;
       align-items: center;
@@ -19,6 +24,10 @@
       align-self: flex-start;
       margin: 2rem 0 1rem 0;
       width: 100%;
+
+      @media only screen and (max-width: 425px) {
+        margin: 1rem 0;
+      }
 
       label {
         color: white;
@@ -28,6 +37,10 @@
         font-weight: lighter;
         margin-right: 1.5rem;
         cursor: pointer;
+
+        @media only screen and (max-width: 425px) {
+          font-size: 1.5rem;
+        }
       }
 
       input {
@@ -37,6 +50,10 @@
         color: white;
         font-family: "Carter One", cursive;
         font-size: 2rem;
+
+        @media only screen and (max-width: 425px) {
+          font-size: 1.5rem;
+        }
 
         &:focus {
           outline: none;
@@ -51,15 +68,28 @@
       margin-bottom: 1rem;
       width: 100%;
 
+      @media only screen and (max-width: 425px) {
+        flex-direction: column;
+      }
+
       &--date {
         color: white;
         font-family: "Carter One", cursive;
         font-size: 1.7rem;
         font-style: italic;
 
+        @media only screen and (max-width: 425px) {
+          font-size: 1.5rem;
+          align-self: flex-start;
+        }
+
         span {
           margin-left: 1rem;
           font-style: normal;
+
+          @media only screen and (max-width: 425px) {
+            font-size: 1.3rem;
+          }
         }
       }
 
@@ -67,6 +97,12 @@
         display: flex;
         justify-content: space-between;
         flex: 0 0 16%;
+        align-self: flex-end;
+
+        @media only screen and (max-width: 425px) {
+          align-self: flex-end;
+          margin-right: 1rem;
+        }
 
         &--1 {
           background-color: rgb(219, 11, 11);
@@ -77,6 +113,11 @@
           color: white;
           font-family: "Carter One", cursive;
           font-size: 1.7rem;
+
+          @media only screen and (max-width: 425px) {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+          }
 
           &:hover {
             background-color: rgb(197, 37, 37);
@@ -97,6 +138,10 @@
           color: white;
           font-family: "Carter One", cursive;
           font-size: 1.7rem;
+
+          @media only screen and (max-width: 425px) {
+            font-size: 1.2rem;
+          }
 
           &:hover {
             background-color: rgb(26, 76, 151);
@@ -126,13 +171,29 @@
         box-shadow: 0 0 15px rgb(26, 71, 139);
         outline: none;
       }
+
+      @media only screen and (max-width: 425px) {
+        margin-right: 1rem;
+        width: 96%;
+        font-size: 1.5rem;
+      }
     }
   }
 }
 
 .toggleSidebarBtn {
-  fill: white;
-  margin: 0.5rem;
-  width: 4rem;
-  height: 4rem;
+  background-color: rgb(1, 14, 36);
+  height: calc(100vh - 8rem);
+  margin-right: 1rem;
+
+  svg {
+    fill: white;
+    margin: 0.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
 }
