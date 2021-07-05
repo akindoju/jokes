@@ -20,9 +20,11 @@ import UpdateConfirmBox from "../../components/UpdateConfirmBox/UpdateConfirmBox
 import "./takeNotePage.scss";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const TakeNotePage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const NoteContent = useSelector((state) => state.app.NoteContent);
   const noteKey = useSelector((state) => state.app.noteKey);
@@ -110,6 +112,7 @@ const TakeNotePage = () => {
       return window.removeEventListener("resize", handleWindowResize);
     }, []);
 
+    //returning an object with width in it
     return { width };
   };
 
@@ -125,6 +128,9 @@ const TakeNotePage = () => {
         {width <= breakPoint ? (
           <div className="toggleSidebarBtn">
             <svg
+              onClick={() => {
+                history.push("/notes");
+              }}
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
