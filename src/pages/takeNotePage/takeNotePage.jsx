@@ -56,19 +56,19 @@ const TakeNotePage = () => {
 
   const saveNote = () => {
     if (isSideBarNoteClicked) {
-      NoteContent.push({
+      NoteContent.unshift({
         title: gottenTitle,
         date: noteDate,
         details: gottenDetails,
       });
     } else if (isNotesPageNoteClicked) {
-      NoteContent.push({
+      NoteContent.unshift({
         title: notesPageGottenTitle,
         date: noteDate,
         details: notesPageGottenDetails,
       });
     } else {
-      NoteContent.push({
+      NoteContent.unshift({
         title: noteTitle,
         date: noteDate,
         details: noteDetails,
@@ -119,6 +119,10 @@ const TakeNotePage = () => {
   const { width } = useViewport();
 
   const breakPoint = 375;
+
+  // const sortNote = () => {
+  //   NoteContent.sort((a, b) => a - b);
+  // };
 
   return (
     <div className="takeNotesPageContainer">

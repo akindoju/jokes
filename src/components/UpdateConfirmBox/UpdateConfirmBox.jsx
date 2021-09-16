@@ -37,14 +37,14 @@ const UpdateConfirmBox = () => {
 
   const saveNewNote = () => {
     if (isSideBarNoteClicked) {
-      NoteContent.push({
+      NoteContent.unshift({
         title: gottenTitle,
         date: noteDate,
         details: gottenDetails,
         key: uuidv4(), //to give unique id
       });
     } else if (isNotesPageNoteClicked) {
-      NoteContent.push({
+      NoteContent.unshift({
         title: notesPageGottenTitle,
         date: noteDate,
         details: notesPageGottenDetails,
@@ -67,14 +67,14 @@ const UpdateConfirmBox = () => {
 
     //push overwriting note to filteredArray
     if (isSideBarNoteClicked) {
-      filteredNoteContent.push({
+      filteredNoteContent.unshift({
         title: gottenTitle,
         date: noteDate,
         details: gottenDetails,
         key: uuidv4(), //to give unique id
       });
     } else if (isNotesPageNoteClicked) {
-      filteredNoteContent.push({
+      filteredNoteContent.unshift({
         title: notesPageGottenTitle,
         date: noteDate,
         details: notesPageGottenDetails,
