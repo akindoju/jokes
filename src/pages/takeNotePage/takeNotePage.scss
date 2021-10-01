@@ -172,6 +172,10 @@
         outline: none;
       }
 
+      @media only screen and (max-width: 600px) {
+        width: 80vw;
+      }
+
       @media only screen and (max-width: 425px) {
         margin-right: 1rem;
         width: 96%;
@@ -182,9 +186,9 @@
 }
 
 .toggleSidebarBtn {
-  background-color: rgb(1, 14, 36);
+  background-color: rgb(3, 25, 59);
   height: calc(100vh - 8rem);
-  margin-right: 1rem;
+  margin-left: 1rem;
 
   svg {
     fill: white;

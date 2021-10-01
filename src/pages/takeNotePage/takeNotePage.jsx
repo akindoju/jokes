@@ -117,7 +117,7 @@ const TakeNotePage = () => {
 
   const { width } = useViewport();
 
-  const breakPoint = 375;
+  const breakPoint = 600;
 
   // const sortNote = () => {
   //   NoteContent.sort((a, b) => a - b);
