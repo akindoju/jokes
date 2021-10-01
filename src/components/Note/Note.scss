@@ -1,10 +1,8 @@
 .sideBarNote {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 0 3rem 1.5rem 3rem;
   background-color: rgb(26, 71, 139);
-  padding: 1rem 0.8rem 1rem 1rem;
+  padding: 1rem 0.8rem;
   color: white;
   border-radius: 0.2rem;
   cursor: pointer;
@@ -16,9 +14,21 @@
     align-items: center;
     width: 74%;
 
+    @media only screen and (max-width: 700px) {
+      width: 100%;
+    }
+
     svg {
       fill: white;
       margin-right: 1.5rem;
+
+      @media only screen and (max-width: 700px) {
+        margin-right: 0.5rem;
+      }
+
+      @media only screen and (max-width: 650px) {
+        margin-right: 0.2rem;
+      }
     }
   }
 
@@ -32,6 +42,7 @@
     font-size: 1rem;
     font-family: "Antic", sans-serif;
     color: rgb(197, 194, 194);
+    text-align: center;
   }
 
   &:hover,

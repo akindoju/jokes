@@ -18,8 +18,7 @@ import SideBar from "../../components/SideBar/SideBar";
 import DeleteConfirmBox from "../../components/DeleteConfirmBox/DeleteConfirmBox";
 import UpdateConfirmBox from "../../components/UpdateConfirmBox/UpdateConfirmBox";
 import "./takeNotePage.scss";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 const TakeNotePage = () => {
